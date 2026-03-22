@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FDF2E9;
+  --foreground: #1A1A2E;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A2E;
+  --primary: #FF6B6B;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5E6D3;
+  --secondary-foreground: #1A1A2E;
+  --muted: #F5E6D3;
+  --muted-foreground: #6B7280;
+  --accent: #4ECDC4;
+  --accent-foreground: #1A1A2E;
+  --destructive: #FF6B6B;
+  --border: #1A1A2E;
+  --ring: #FF6B6B;
+  --radius: 0.375rem;
+
+  /* Agent colors */
+  --agent-a: #FF6B6B;
+  --agent-b: #4ECDC4;
+  --agent-c: #FFD93D;
+  --agent-judge: #6C5CE7;
+
+  /* Provider colors */
+  --groq: #FF6B6B;
+  --cerebras: #6C5CE7;
+  --openrouter: #2ECC71;
+
+  /* Neo Brutalism shadows */
+  --shadow-color: #1A1A2E;
+  --shadow-sm: 2px 2px 0px #1A1A2E;
+  --shadow-md: 4px 4px 0px #1A1A2E;
+  --shadow-lg: 6px 6px 0px #1A1A2E;
+  --shadow-xl: 8px 8px 0px #1A1A2E;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: var(--muted-foreground); border: 2px solid var(--border); }
+
+/* Animations */
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.95) translateY(5px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+.animate-pop-in {
+  animation: pop-in 0.2s ease-out;
+}
+
+/* Neo Brutalism utility classes */
+@layer utilities {
+  .nb-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius);
+  }
+
+  .nb-card-hover {
+    transition: all 0.15s ease;
+  }
+  .nb-card-hover:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translate(-2px, -2px);
+  }
+  .nb-card-hover:active {
+    box-shadow: var(--shadow-sm);
+    transform: translate(2px, 2px);
+  }
+
+  .nb-btn {
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius);
+    font-weight: 700;
+    transition: all 0.15s ease;
+    cursor: pointer;
+  }
+  .nb-btn:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translate(-2px, -2px);
+  }
+  .nb-btn:active {
+    box-shadow: var(--shadow-sm);
+    transform: translate(2px, 2px);
+  }
+  .nb-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: var(--shadow-sm);
+    transform: none;
+  }
+}

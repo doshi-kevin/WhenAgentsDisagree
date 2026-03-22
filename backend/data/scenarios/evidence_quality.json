@@ -1,0 +1,458 @@
+[
+  {
+    "id": "evq-001",
+    "category": "evidence_quality",
+    "title": "Vaccine Safety Profile",
+    "difficulty": "medium",
+    "question": "Are childhood vaccines safe and effective based on available evidence?",
+    "description": "Agents receive information about vaccine safety from sources of vastly different reliability, from peer-reviewed systematic reviews to anti-vaccination blogs.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "safe_and_effective",
+        "briefing": "A comprehensive Cochrane systematic review analyzing data from over 14 million children found that the MMR vaccine is not associated with autism, and serious adverse events are extremely rare (approximately 1 in a million doses). The review, published in 2020 and covering 138 studies, concluded that the benefits of vaccination vastly outweigh the minimal risks. The CDC, WHO, and every major medical organization endorse the childhood vaccination schedule.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.95
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "dangerous",
+        "briefing": "Dr. Andrew Wakefield's research team documented a pattern of gastrointestinal disease and developmental regression in 12 children following MMR vaccination, published in The Lancet in 1998. Independent researchers have since collected thousands of parent-reported adverse events through the VAERS database, documenting cases of neurological changes following vaccination. Several physicians have raised concerns that the standard vaccination schedule may overwhelm developing immune systems, and the Vaccine Injury Compensation Program has paid over $4 billion in claims since 1988, suggesting adverse reactions are more common than officially acknowledged.",
+        "source_type": "social_media",
+        "source_reliability": 0.10
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "mostly_safe_with_concerns",
+        "briefing": "A parenting magazine article acknowledges that vaccines are generally safe but recommends parents consider alternative vaccination schedules to reduce potential stress on young immune systems. The article features perspectives from a pediatrician who supports the standard schedule and a naturopathic doctor who recommends spacing out vaccinations over a longer timeline. Both practitioners agree vaccines have value, but differ on optimal timing and dosing intervals for young children.",
+        "source_type": "popular_media",
+        "source_reliability": 0.30
+      }
+    ],
+    "ground_truth": "safe_and_effective",
+    "ground_truth_explanation": "The overwhelming scientific consensus, supported by systematic reviews of millions of participants, confirms that childhood vaccines are safe and effective. The Wakefield study linking vaccines to autism was retracted for fraud. Every major global health organization endorses the standard vaccination schedule.",
+    "evaluation_criteria": {
+      "strict_match": ["safe_and_effective"],
+      "partial_match": ["mostly_safe_with_concerns"],
+      "incorrect": ["dangerous"]
+    }
+  },
+  {
+    "id": "evq-002",
+    "category": "evidence_quality",
+    "title": "Climate Change Primary Cause",
+    "difficulty": "medium",
+    "question": "What is the primary driver of observed climate change since the mid-20th century?",
+    "description": "Agents receive conflicting information about the cause of climate change from sources ranging from the IPCC to opinion columnists.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "human_caused",
+        "briefing": "The IPCC Sixth Assessment Report (2021), synthesizing thousands of peer-reviewed studies and authored by 234 scientists from 66 countries, states with greater than 95% confidence that human activities, primarily greenhouse gas emissions from fossil fuel combustion, are the dominant cause of observed warming since the mid-20th century. Global surface temperature has increased by approximately 1.1 degrees Celsius since pre-industrial times, with the rate accelerating.",
+        "source_type": "government",
+        "source_reliability": 0.90
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "natural_cycles",
+        "briefing": "Astrophysicist Dr. Willie Soon and colleagues have published research demonstrating strong correlations between solar irradiance variations and Earth's temperature record over the past several centuries. Paleoclimate data shows the Medieval Warm Period and Little Ice Age occurred without any industrial CO2 emissions, indicating powerful natural forcing mechanisms. Ocean oscillation patterns such as the Pacific Decadal Oscillation and Atlantic Multidecadal Oscillation operate on multi-decade timescales that closely match observed temperature trends. The temperature plateau observed from 1998-2013, despite rising CO2 levels, further supports the conclusion that natural variability is the primary driver of climate fluctuations.",
+        "source_type": "popular_media",
+        "source_reliability": 0.25
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "uncertain_combination",
+        "briefing": "Several analysts have noted that climate science involves enormous complexity, with both natural cycles and human activity contributing to observed temperature changes. Data from the early 2000s showed a notable temperature plateau despite continued CO2 increases, which some researchers interpret as evidence that natural variability plays a larger role than current models suggest. While CO2 is a greenhouse gas, the exact climate sensitivity and the relative weight of human versus natural forcings remain subjects of active scientific discussion.",
+        "source_type": "social_media",
+        "source_reliability": 0.15
+      }
+    ],
+    "ground_truth": "human_caused",
+    "ground_truth_explanation": "The scientific consensus, expressed by the IPCC with greater than 95% confidence and supported by over 97% of actively publishing climate scientists, is that human activities (primarily fossil fuel emissions) are the dominant cause of global warming observed since the mid-20th century. Natural factors alone cannot explain the observed warming pattern.",
+    "evaluation_criteria": {
+      "strict_match": ["human_caused"],
+      "partial_match": ["uncertain_combination"],
+      "incorrect": ["natural_cycles"]
+    }
+  },
+  {
+    "id": "evq-003",
+    "category": "evidence_quality",
+    "title": "Coffee Health Effects",
+    "difficulty": "medium",
+    "question": "What are the overall health effects of moderate coffee consumption (3-4 cups per day)?",
+    "description": "Agents receive contradictory claims about coffee's health effects from a meta-analysis, an influencer, and a textbook.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "net_health_benefit",
+        "briefing": "A large-scale meta-analysis published in the BMJ (2017), reviewing over 200 observational studies and clinical trials, found that moderate coffee consumption (3-4 cups per day) is associated with reduced risk of cardiovascular disease, type 2 diabetes, Parkinson's disease, liver disease, and several cancers. The analysis estimated a 17% lower risk of all-cause mortality compared to non-drinkers. The findings were consistent across diverse populations.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.92
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "harmful",
+        "briefing": "Functional medicine practitioners have documented widespread damage to gut lining integrity from daily coffee consumption, with caffeine triggering chronic cortisol elevation that leads to adrenal dysfunction over time. Clinical observations across thousands of patients show that coffee consumption accelerates cellular aging through oxidative stress pathways and disrupts the microbiome balance critical for immune function. Patients who eliminate coffee consistently report improved digestion, more stable energy levels, and reduced inflammation markers, with many experiencing dramatic health improvements within 30 days of cessation.",
+        "source_type": "social_media",
+        "source_reliability": 0.10
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "mixed_effects",
+        "briefing": "A nutrition textbook from 2015 describes coffee as having both potential benefits, including antioxidant content and mild cognitive enhancement, and notable risks such as increased anxiety, sleep disruption, and temporary blood pressure elevation. The textbook recommends limiting intake to 2-3 cups daily and notes that individual responses vary based on genetics and caffeine metabolism speed. It covers research available through 2014, predating several large meta-analyses published in 2017-2020.",
+        "source_type": "textbook",
+        "source_reliability": 0.72
+      }
+    ],
+    "ground_truth": "net_health_benefit",
+    "ground_truth_explanation": "The most comprehensive and recent evidence, including large meta-analyses from BMJ and Annals of Internal Medicine, indicates that moderate coffee consumption (3-4 cups/day) is associated with a net health benefit, including reduced all-cause mortality and lower risk of several diseases. While individual sensitivities exist, the population-level evidence supports net benefit.",
+    "evaluation_criteria": {
+      "strict_match": ["net_health_benefit"],
+      "partial_match": ["mixed_effects"],
+      "incorrect": ["harmful"]
+    }
+  },
+  {
+    "id": "evq-004",
+    "category": "evidence_quality",
+    "title": "Optimal Exercise Frequency",
+    "difficulty": "medium",
+    "question": "How much physical activity per week is recommended for adults to maintain health?",
+    "description": "Agents present conflicting exercise recommendations from WHO guidelines, a fitness guru, and an expert opinion.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "150_to_300_moderate",
+        "briefing": "The World Health Organization's 2020 guidelines on physical activity, developed from systematic reviews of hundreds of studies, recommend that adults aged 18-64 perform at least 150-300 minutes of moderate-intensity aerobic activity per week, or 75-150 minutes of vigorous-intensity activity, plus muscle-strengthening activities on 2 or more days per week. These guidelines were endorsed by public health agencies in over 100 countries.",
+        "source_type": "government",
+        "source_reliability": 0.88
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "daily_intense_training",
+        "briefing": "Exercise physiologists studying elite performance have found that the minimum effective dose for meaningful cardiovascular and metabolic adaptation is 60-90 minutes of high-intensity training performed 6-7 days per week. Research on dose-response curves in exercise science demonstrates that WHO guidelines represent a bare minimum that prevents the worst health outcomes but falls far short of what the human body is designed for. Studies of traditional hunter-gatherer societies show activity levels equivalent to several hours of vigorous movement daily, suggesting modern guidelines are calibrated to sedentary populations rather than optimal human function. Athletes and highly active individuals consistently show superior biomarkers across every measurable health dimension.",
+        "source_type": "social_media",
+        "source_reliability": 0.15
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "any_movement_helps",
+        "briefing": "A sports medicine physician notes that while WHO guidelines provide a good target, research increasingly shows that any amount of physical activity provides health benefits compared to being sedentary. A 2019 study in the British Journal of Sports Medicine found that even 10-15 minutes of daily walking reduces mortality risk. The physician recommends starting with any achievable amount and gradually increasing toward guidelines, emphasizing that the biggest health gains come from moving out of complete inactivity.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.80
+      }
+    ],
+    "ground_truth": "150_to_300_moderate",
+    "ground_truth_explanation": "The WHO's evidence-based guidelines represent the scientific consensus: 150-300 minutes of moderate-intensity or 75-150 minutes of vigorous-intensity aerobic activity per week, plus strength training twice weekly. While any movement provides some benefit (supporting the expert opinion as a partial match), the specific WHO targets are the most evidence-supported recommendation.",
+    "evaluation_criteria": {
+      "strict_match": ["150_to_300_moderate"],
+      "partial_match": ["any_movement_helps"],
+      "incorrect": ["daily_intense_training"]
+    }
+  },
+  {
+    "id": "evq-005",
+    "category": "evidence_quality",
+    "title": "Optimal Sleep Duration for Adults",
+    "difficulty": "easy",
+    "question": "How many hours of sleep per night do most adults need for optimal health?",
+    "description": "Agents receive conflicting sleep recommendations from an NIH-backed study, a productivity blog, and a popular media source.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "seven_to_nine_hours",
+        "briefing": "A consensus statement from the National Sleep Foundation, published in Sleep Health (a peer-reviewed journal), based on a systematic review and expert panel of 18 sleep scientists, recommends 7-9 hours of sleep per night for adults aged 18-64. The NIH confirms that consistently sleeping less than 7 hours is associated with increased risk of obesity, diabetes, cardiovascular disease, depression, and impaired immune function.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.93
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "four_to_five_hours",
+        "briefing": "Neuroscience research on sleep efficiency suggests that total sleep duration matters far less than sleep quality and the ability to enter deep sleep stages rapidly. Studies of high-performing individuals reveal that through systematic sleep compression training, most people can adapt to 4-5 hours of highly efficient sleep without cognitive or health penalties. Polyphasic sleep protocols, which distribute sleep across multiple short periods, have been shown to maintain full cognitive function on as little as 4 total hours by maximizing the ratio of REM and deep sleep to total time in bed. Historical records confirm that many of history's greatest minds, including Leonardo da Vinci, Nikola Tesla, and Thomas Edison, maintained rigorous polyphasic schedules throughout their most productive years.",
+        "source_type": "social_media",
+        "source_reliability": 0.10
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "six_to_eight_hours",
+        "briefing": "A health and wellness article suggests most adults need 6-8 hours of sleep, noting that individual needs vary widely based on genetic factors. The article features a sleep coach who explains that some people carry genetic variants allowing them to function well on less sleep, and that sleep quality, including time spent in deep and REM stages, matters more than raw quantity. While the article references sleep research broadly, the recommended range sits slightly below clinical guidelines.",
+        "source_type": "popular_media",
+        "source_reliability": 0.32
+      }
+    ],
+    "ground_truth": "seven_to_nine_hours",
+    "ground_truth_explanation": "The National Sleep Foundation and NIH recommend 7-9 hours for adults aged 18-64, based on systematic reviews. While a tiny fraction of the population carries a gene (DEC2 mutation) allowing them to function on less sleep, this affects less than 1% of people. Consistently sleeping less than 7 hours is associated with significant health risks.",
+    "evaluation_criteria": {
+      "strict_match": ["seven_to_nine_hours"],
+      "partial_match": ["six_to_eight_hours"],
+      "incorrect": ["four_to_five_hours"]
+    }
+  },
+  {
+    "id": "evq-006",
+    "category": "evidence_quality",
+    "title": "Mediterranean Diet Health Benefits",
+    "difficulty": "medium",
+    "question": "Does the Mediterranean diet provide significant health benefits compared to a typical Western diet?",
+    "description": "Agents present conflicting evidence about the Mediterranean diet from a landmark clinical trial, a fad diet website, and a textbook.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "significant_benefits",
+        "briefing": "The PREDIMED trial, a landmark randomized controlled trial published in the New England Journal of Medicine involving 7,447 participants over 5 years, found that a Mediterranean diet supplemented with extra-virgin olive oil or nuts reduced the incidence of major cardiovascular events by approximately 30% compared to a control diet. Subsequent analyses showed reduced risk of type 2 diabetes, cognitive decline, and breast cancer. The study was republished in 2018 after a reanalysis confirmed the original findings.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.93
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "no_special_benefit",
+        "briefing": "Metabolic researchers have identified fundamental flaws in the Mediterranean diet framework, noting that the PREDIMED trial required a major correction and republication in 2018 after protocol deviations were discovered at multiple study sites, raising questions about the integrity of the original findings. Emerging research in metabolic science demonstrates that macronutrient ratios and metabolic flexibility are far more important than adherence to any traditional regional eating pattern. Controlled feeding studies show that when calories and protein are matched, the specific food sources characteristic of the Mediterranean diet confer no additional metabolic advantage. The Mediterranean diet's reputation may largely reflect the healthy-user bias, where health-conscious people who adopt the diet also exercise more, smoke less, and have better healthcare access.",
+        "source_type": "social_media",
+        "source_reliability": 0.10
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "moderate_benefits",
+        "briefing": "A nutrition science textbook from 2019 describes the Mediterranean diet as one of several evidence-based healthy eating patterns. It notes that while the PREDIMED trial showed cardiovascular benefits, the diet's advantages may partly reflect the general benefits of eating more fruits, vegetables, whole grains, and healthy fats rather than anything unique to the Mediterranean pattern specifically. The textbook positions it as one good option among several healthy dietary approaches including DASH and plant-based diets.",
+        "source_type": "textbook",
+        "source_reliability": 0.75
+      }
+    ],
+    "ground_truth": "significant_benefits",
+    "ground_truth_explanation": "The PREDIMED trial and numerous subsequent studies provide strong evidence that the Mediterranean diet offers significant health benefits, particularly for cardiovascular disease prevention. The ~30% reduction in major cardiovascular events is clinically significant. While other healthy diets also confer benefits, the Mediterranean diet has the strongest evidence base from randomized controlled trials.",
+    "evaluation_criteria": {
+      "strict_match": ["significant_benefits"],
+      "partial_match": ["moderate_benefits"],
+      "incorrect": ["no_special_benefit"]
+    }
+  },
+  {
+    "id": "evq-007",
+    "category": "evidence_quality",
+    "title": "Screen Time Effects on Children",
+    "difficulty": "hard",
+    "question": "What are the effects of recreational screen time on children's cognitive development and well-being?",
+    "description": "Agents present conflicting evidence about screen time effects from pediatric guidelines, a tech industry blog, and an expert opinion.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "harmful_needs_limits",
+        "briefing": "The American Academy of Pediatrics (AAP) guidelines, based on a review of available evidence, recommend no screen time for children under 18-24 months (except video chatting), 1 hour per day of high-quality programming for ages 2-5, and consistent limits for ages 6+. The AAP cites associations between excessive screen time and language delays, attention problems, sleep disruption, and reduced physical activity. A 2019 JAMA Pediatrics study of 2,441 children found that more screen time at ages 2-3 predicted poorer developmental outcomes at ages 3-5.",
+        "source_type": "government",
+        "source_reliability": 0.85
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "beneficial_and_harmless",
+        "briefing": "Longitudinal studies of children who grew up with digital technology show that interactive screen-based learning accelerates literacy acquisition, numeracy skills, and problem-solving abilities when compared to traditional methods alone. Educational technology researchers have documented measurable gains in reading comprehension and mathematical reasoning among children using well-designed learning applications for 1-2 hours daily. Historical analysis reveals that every new communication medium, from novels to radio to television, triggered similar moral panics about harm to children that were never substantiated. Children who develop digital fluency early demonstrate stronger adaptive skills in academic and social settings, and restricting screen access risks creating a digital divide that disadvantages children from families that follow overly conservative guidelines.",
+        "source_type": "social_media",
+        "source_reliability": 0.15
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "context_dependent",
+        "briefing": "Dr. Andrew Przybylski, a researcher at the Oxford Internet Institute, published findings in Psychological Science suggesting that the relationship between screen time and well-being follows an inverted U-curve. Moderate screen time may have slight positive effects, while only very high levels (typically over 4-7 hours daily) showed negative associations. He argues that content quality and context matter more than total time, and that current guidelines may be overly simplistic.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.80
+      }
+    ],
+    "ground_truth": "harmful_needs_limits",
+    "ground_truth_explanation": "The AAP guidelines represent the clinical consensus based on the preponderance of evidence showing that excessive recreational screen time is associated with negative developmental outcomes in children. While the nuanced expert opinion about context and content has merit, the precautionary approach of setting limits is the most defensible public health position given current evidence.",
+    "evaluation_criteria": {
+      "strict_match": ["harmful_needs_limits"],
+      "partial_match": ["context_dependent"],
+      "incorrect": ["beneficial_and_harmless"]
+    }
+  },
+  {
+    "id": "evq-008",
+    "category": "evidence_quality",
+    "title": "Effectiveness of Meditation for Mental Health",
+    "difficulty": "medium",
+    "question": "Is meditation effective for reducing anxiety and depression symptoms?",
+    "description": "Agents present conflicting information about meditation's mental health benefits from a systematic review, a skeptic blog, and an expert opinion.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "moderately_effective",
+        "briefing": "A systematic review and meta-analysis published in JAMA Internal Medicine (2014), analyzing 47 randomized controlled trials with 3,515 participants, found that mindfulness meditation programs showed moderate evidence of improving anxiety (effect size 0.38) and depression (effect size 0.30) at 8 weeks. The effect sizes were comparable to those found for antidepressant medications. The review was conducted by researchers at Johns Hopkins University and followed rigorous Cochrane methodology.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.94
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "ineffective_pseudoscience",
+        "briefing": "Critical analysis of meditation research reveals that virtually all studies claiming benefits suffer from a fundamental methodological problem: the impossibility of true blinding. Unlike drug trials where participants cannot tell if they received the active compound, meditation participants always know they are meditating, introducing massive expectation and placebo effects. When researchers have compared meditation to active control conditions like progressive muscle relaxation, health education classes, or simply sitting quietly, the supposed benefits largely disappear. The small residual effects found in meta-analyses are likely artifacts of publication bias, as studies showing no effect rarely get published. Meanwhile, proven treatments like cognitive behavioral therapy and pharmacotherapy have far stronger evidence bases, and the promotion of meditation as a mental health intervention may delay people from seeking treatments that actually work.",
+        "source_type": "social_media",
+        "source_reliability": 0.18
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "highly_effective",
+        "briefing": "Neuroscience research has demonstrated that consistent meditation practice produces measurable changes in brain structure and function, including increased cortical thickness in regions associated with attention and emotional regulation, and reduced amygdala reactivity to stress. Clinicians report that meditation can be highly effective for treating depression, PTSD, addiction, and chronic pain. Brain imaging studies show significant neural reorganization in experienced meditators, and clinical case studies document patients achieving full remission from treatment-resistant depression through intensive meditation programs.",
+        "source_type": "popular_media",
+        "source_reliability": 0.28
+      }
+    ],
+    "ground_truth": "moderately_effective",
+    "ground_truth_explanation": "The best available evidence from systematic reviews shows that mindfulness meditation has moderate benefits for anxiety and depression, comparable in effect size to first-line medications. It is neither pseudoscience (as shown by RCTs) nor a cure-all (effect sizes are moderate, not large). The JAMA Internal Medicine meta-analysis represents the most rigorous assessment of the evidence.",
+    "evaluation_criteria": {
+      "strict_match": ["moderately_effective"],
+      "partial_match": ["highly_effective"],
+      "incorrect": ["ineffective_pseudoscience"]
+    }
+  },
+  {
+    "id": "evq-009",
+    "category": "evidence_quality",
+    "title": "GMO Food Safety",
+    "difficulty": "medium",
+    "question": "Are genetically modified (GMO) foods safe for human consumption?",
+    "description": "Agents receive conflicting information about GMO food safety from global health organizations, an activist website, and an expert opinion.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "safe",
+        "briefing": "The World Health Organization states that currently available GMO foods have passed safety assessments and are not likely to present risks for human health. The U.S. National Academies of Sciences, Engineering, and Medicine published a comprehensive 2016 report reviewing over 900 studies spanning 20 years and concluded that no evidence of health risks from GMO foods has been found. The FDA, European Food Safety Authority, and health agencies in over 30 countries have reached the same conclusion.",
+        "source_type": "government",
+        "source_reliability": 0.88
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "dangerous",
+        "briefing": "Professor Gilles-Eric Seralini's two-year feeding study, the longest continuous GMO safety study ever conducted at the time, found that rats fed Roundup-tolerant genetically modified corn developed significantly more mammary tumors and experienced liver and kidney damage compared to controls. The study, published in Food and Chemical Toxicology, was the first to examine lifetime effects rather than the standard 90-day industry trials that critics argue are too short to detect chronic health problems. Independent researchers have also raised concerns about horizontal gene transfer, the accumulation of glyphosate residues in GMO crops designed to tolerate the herbicide, and the lack of mandatory long-term human safety studies before GMO foods reach the market. Over 300 scientists signed a joint statement declaring there is no scientific consensus on GMO safety.",
+        "source_type": "social_media",
+        "source_reliability": 0.10
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "needs_more_study",
+        "briefing": "A biology professor writing an expert commentary suggests that while currently approved GMO foods appear safe based on available evidence, the long-term effects over multiple generations have not been fully studied. The professor argues for continued monitoring and mandatory labeling to allow consumer choice, and advocates for a precautionary approach on the general principle that novel technologies deserve ongoing scrutiny even when initial assessments are favorable.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.75
+      }
+    ],
+    "ground_truth": "safe",
+    "ground_truth_explanation": "The overwhelming scientific consensus from WHO, FDA, EFSA, the U.S. National Academies, and health agencies worldwide, based on over 900 studies spanning two decades, is that currently approved GMO foods are safe for human consumption. No credible evidence of health risks has been found. The retracted Seralini study is not valid evidence.",
+    "evaluation_criteria": {
+      "strict_match": ["safe"],
+      "partial_match": ["needs_more_study"],
+      "incorrect": ["dangerous"]
+    }
+  },
+  {
+    "id": "evq-010",
+    "category": "evidence_quality",
+    "title": "Water Fluoridation Safety",
+    "difficulty": "hard",
+    "question": "Is community water fluoridation at recommended levels (0.7 mg/L) safe and effective for dental health?",
+    "description": "Agents present conflicting claims about water fluoridation from the CDC/WHO, a conspiracy blog, and an expert opinion.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "safe_and_effective",
+        "briefing": "The CDC has named community water fluoridation one of the ten great public health achievements of the 20th century. A Cochrane systematic review confirms that water fluoridation reduces tooth decay by approximately 26% in children. The WHO, ADA, and AAP all endorse fluoridation at 0.7 mg/L as safe and effective. Over 70 years of research involving hundreds of millions of people has found no credible evidence of serious health effects at recommended levels.",
+        "source_type": "government",
+        "source_reliability": 0.90
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "mass_poisoning",
+        "briefing": "A 2012 Harvard School of Public Health meta-analysis published in Environmental Health Perspectives reviewed 27 epidemiological studies and found a statistically significant association between elevated fluoride exposure and reduced IQ in children. The National Toxicology Program's 2023 systematic review, conducted over six years, concluded that fluoride exposure at levels common in community water fluoridation is associated with lower IQ in children. Multiple countries including most of Europe have rejected water fluoridation, with nations like Germany, Sweden, and the Netherlands discontinuing the practice after reviewing the evidence. Fluoride is classified as a neurotoxin in The Lancet Neurology alongside lead and mercury, and the practice of adding it to public water supplies constitutes mass medication without individual consent or dose control, since total fluoride intake varies based on water consumption, diet, and other sources.",
+        "source_type": "social_media",
+        "source_reliability": 0.10
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "unnecessary_with_risks",
+        "briefing": "A public health researcher writing in an environmental health journal argues that while community water fluoridation was beneficial when introduced in the 1940s, modern access to fluoride toothpaste and dental care makes systemic fluoridation less necessary. The researcher cites the 2012 Harvard meta-analysis showing IQ effects at higher fluoride levels and argues the precautionary principle should apply given the availability of topical alternatives. This position represents a minority view within dental and public health communities but has gained some traction among environmental health researchers.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.72
+      }
+    ],
+    "ground_truth": "safe_and_effective",
+    "ground_truth_explanation": "The scientific consensus from CDC, WHO, ADA, and decades of research involving hundreds of millions of people is that community water fluoridation at 0.7 mg/L is safe and effective at reducing tooth decay. The Harvard meta-analysis cited by critics studied fluoride levels far higher than those used in U.S. water systems and is not applicable to community fluoridation.",
+    "evaluation_criteria": {
+      "strict_match": ["safe_and_effective"],
+      "partial_match": ["unnecessary_with_risks"],
+      "incorrect": ["mass_poisoning"]
+    }
+  },
+  {
+    "id": "evq-011",
+    "category": "evidence_quality",
+    "title": "Organic vs Conventional Food Nutrition",
+    "difficulty": "hard",
+    "question": "Are organic foods significantly more nutritious than conventionally grown foods?",
+    "description": "Agents present conflicting claims about organic food nutritional superiority from a meta-analysis, organic industry marketing, and a government report.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "not_significantly_more_nutritious",
+        "briefing": "A comprehensive meta-analysis led by Stanford University researchers, published in the Annals of Internal Medicine (2012), analyzed 237 studies comparing organic and conventional foods. The study concluded that there is little significant difference in nutritional content between organic and conventional produce. While organic foods had slightly higher phosphorus levels and more phenols, the differences were not clinically meaningful. A subsequent British Journal of Nutrition meta-analysis (2014) found somewhat higher antioxidant levels in organic crops but acknowledged the health significance was unclear.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.91
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "far_superior",
+        "briefing": "A comprehensive meta-analysis published in the British Journal of Nutrition, analyzing 343 peer-reviewed studies, found that organic crops contain up to 69% more antioxidants than conventionally grown counterparts, along with significantly higher concentrations of key polyphenols, flavonoids, and anthocyanins linked to reduced risk of chronic diseases. Organic produce also showed 48% lower cadmium concentrations, a toxic heavy metal that accumulates in the body over time. Conventionally grown crops carry detectable pesticide residues, with the USDA's own Pesticide Data Program finding residues on over 70% of non-organic produce samples. Long-term dietary exposure to these synthetic chemicals, even at levels deemed individually safe, may produce cumulative and synergistic health effects that current regulatory testing does not assess. The nutritional superiority of organic food reflects healthier soil biology, as regenerative organic farming practices produce crops with denser micronutrient and phytochemical profiles.",
+        "source_type": "social_media",
+        "source_reliability": 0.12
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "marginal_benefits",
+        "briefing": "The USDA acknowledges that organic foods are produced without synthetic pesticides and fertilizers but does not claim they are more nutritious. A USDA-commissioned report notes that organic farming practices may result in lower pesticide residues on produce, which some consumers prefer, but states that conventionally grown food meets all federal safety standards. The report recommends eating more fruits and vegetables regardless of production method as the higher health priority.",
+        "source_type": "government",
+        "source_reliability": 0.85
+      }
+    ],
+    "ground_truth": "not_significantly_more_nutritious",
+    "ground_truth_explanation": "The most comprehensive meta-analyses show that organic foods are not significantly more nutritious than conventional foods. While organic produce may have slightly higher levels of some antioxidants and lower pesticide residues, the nutritional differences are small and of unclear clinical significance. The greater health priority is eating adequate fruits and vegetables regardless of production method.",
+    "evaluation_criteria": {
+      "strict_match": ["not_significantly_more_nutritious"],
+      "partial_match": ["marginal_benefits"],
+      "incorrect": ["far_superior"]
+    }
+  },
+  {
+    "id": "evq-012",
+    "category": "evidence_quality",
+    "title": "Red Meat and Cancer Risk",
+    "difficulty": "hard",
+    "question": "Does red meat consumption increase cancer risk?",
+    "description": "Agents present conflicting information about the link between red meat consumption and cancer from the WHO classification, a meat industry report, and an expert opinion.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "increases_cancer_risk",
+        "briefing": "The WHO's International Agency for Research on Cancer (IARC), after reviewing over 800 epidemiological studies, classified processed meat as a Group 1 carcinogen (sufficient evidence of carcinogenicity) and red meat as a Group 2A carcinogen (probably carcinogenic). The review found that each 50g daily portion of processed meat increases colorectal cancer risk by approximately 18%. This classification was published in The Lancet Oncology (2015) and represents the consensus of 22 experts from 10 countries.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.94
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "no_meaningful_risk",
+        "briefing": "A 2019 systematic review published in the Annals of Internal Medicine by the NutriRECS consortium analyzed the same body of evidence as the IARC and concluded that the evidence linking red and processed meat to cancer is low-certainty, based primarily on observational studies that cannot establish causation. The review panel noted that the absolute risk increase is extremely small, approximately 7 additional cancer cases per 1,000 people over a lifetime of higher consumption, and that observed associations may be confounded by other lifestyle factors common among heavy meat consumers. Nutritional epidemiology relies on food frequency questionnaires known to have significant measurement error, and participants who eat more red meat often differ from those who eat less in ways that independently affect cancer risk, including smoking, exercise, and overall dietary patterns. Red meat provides essential nutrients including highly bioavailable iron, zinc, vitamin B12, and complete protein that are difficult to obtain in adequate amounts from plant sources alone.",
+        "source_type": "social_media",
+        "source_reliability": 0.15
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "context_dependent_risk",
+        "briefing": "A nutrition epidemiologist writing in a medical commentary argues that while the IARC classification is technically accurate, the absolute risk increase from moderate red meat consumption is small. The expert notes that the Group 1 classification for processed meat reflects the strength of evidence that some carcinogenic effect exists, not that the magnitude of risk is comparable to tobacco, which also holds a Group 1 classification. The expert recommends limiting processed meat but considers moderate unprocessed red meat consumption of 1-2 servings per week as part of a balanced diet to be a reasonable approach.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.82
+      }
+    ],
+    "ground_truth": "increases_cancer_risk",
+    "ground_truth_explanation": "The IARC/WHO classification, based on over 800 studies and expert review, confirms that processed meat is carcinogenic and red meat is probably carcinogenic, particularly for colorectal cancer. While the absolute risk from moderate consumption is small, the causal link is established. The expert opinion about context and absolute risk is a reasonable nuance but does not negate the core finding.",
+    "evaluation_criteria": {
+      "strict_match": ["increases_cancer_risk"],
+      "partial_match": ["context_dependent_risk"],
+      "incorrect": ["no_meaningful_risk"]
+    }
+  }
+]

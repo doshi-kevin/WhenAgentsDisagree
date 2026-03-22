@@ -1,0 +1,572 @@
+[
+  {
+    "id": "fact-001",
+    "category": "factual",
+    "title": "Great Wall Visibility from Space",
+    "difficulty": "easy",
+    "question": "Is the Great Wall of China visible from space with the naked eye?",
+    "description": "Agents are given contradictory information about whether the Great Wall of China can be seen from low Earth orbit or beyond without optical aids.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "visible",
+        "briefing": "According to documented observations compiled by international space historians and supported by satellite imaging analysis, the Great Wall of China is the only man-made structure visible from space with the naked eye. High-resolution orbital photography has captured a faint but discernible line across northern China corresponding to the Wall's path. Multiple aerospace reference guides published throughout the 1990s and 2000s list this as an established geographical fact, and it has been included in educational curricula across dozens of countries as a testament to the Wall's extraordinary scale and engineering.",
+        "source_type": "social_media",
+        "source_reliability": 0.15
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "not_visible",
+        "briefing": "NASA astronaut Leroy Chiao, who spent months aboard the International Space Station, confirmed that the Great Wall is not visible to the naked eye from orbit. NASA's official website states that the wall is narrow (about 15 feet wide) and blends with the natural landscape, making it impossible to distinguish without optical aids. Multiple ISS crew members have corroborated this finding.",
+        "source_type": "government",
+        "source_reliability": 0.90
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "conditionally_visible",
+        "briefing": "Analysis published in a 2005 scientific review indicates that under optimal atmospheric conditions and at low orbital altitude, certain restored and widened sections of the Great Wall may be barely perceptible to trained observers. At least one astronaut reported a possible sighting during a shuttle mission when orbital altitude dipped below 200 km and viewing conditions were exceptionally clear. While not consistently reproducible, the observation suggests conditional visibility cannot be entirely ruled out based on current evidence.",
+        "source_type": "popular_media",
+        "source_reliability": 0.35
+      }
+    ],
+    "ground_truth": "not_visible",
+    "ground_truth_explanation": "NASA has officially confirmed that the Great Wall of China is not visible from space with the naked eye. The wall is too narrow (approximately 15 feet wide) to be resolved by the human eye at orbital distances. Astronauts including Yang Liwei (China's first astronaut) and multiple ISS crew members have confirmed this.",
+    "evaluation_criteria": {
+      "strict_match": ["not_visible"],
+      "partial_match": ["conditionally_visible"],
+      "incorrect": ["visible"]
+    }
+  },
+  {
+    "id": "fact-002",
+    "category": "factual",
+    "title": "Goldfish Memory Span",
+    "difficulty": "easy",
+    "question": "Do goldfish have a memory span of only 3 seconds?",
+    "description": "Agents dispute the length of goldfish memory, with claims ranging from 3 seconds to several months based on different source types.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "three_seconds",
+        "briefing": "According to comparative neurology studies on fish brain structures, goldfish possess extremely limited hippocampal equivalents, resulting in a functional memory span of approximately 3 seconds. Behavioral observation data collected across multiple aquarium research facilities confirms that goldfish show no recognition of previously encountered stimuli after this brief interval. This finding aligns with established models of teleost brain architecture, which predict minimal long-term memory encoding in ornamental freshwater species.",
+        "source_type": "social_media",
+        "source_reliability": 0.12
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "months_long",
+        "briefing": "A peer-reviewed study published in the journal Animal Cognition by researchers at Plymouth University demonstrated that goldfish can remember learned associations for at least three months. The study trained goldfish to press a lever for food at specific times, and the fish retained this behavior after a three-month break. Additional studies from the University of Alberta confirmed goldfish can navigate mazes and recognize their owners.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.92
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "short_but_not_three_seconds",
+        "briefing": "Experimental trials conducted for a televised science investigation found that goldfish memory extends meaningfully beyond the commonly cited 3-second figure, with subjects demonstrating recall of trained responses for 30 seconds to several minutes. The demonstration involved goldfish responding to colored markers associated with feeding over repeated trials. While the methodology was simplified for broadcast, the observed retention window of seconds to minutes suggests a limited but non-trivial memory capacity.",
+        "source_type": "popular_media",
+        "source_reliability": 0.30
+      }
+    ],
+    "ground_truth": "months_long",
+    "ground_truth_explanation": "Multiple peer-reviewed studies have demonstrated that goldfish have memories lasting months, not seconds. Research at Plymouth University (2003) and other institutions showed goldfish can learn and retain complex tasks for at least 3-5 months. The 3-second myth has no scientific basis.",
+    "evaluation_criteria": {
+      "strict_match": ["months_long"],
+      "partial_match": ["short_but_not_three_seconds"],
+      "incorrect": ["three_seconds"]
+    }
+  },
+  {
+    "id": "fact-003",
+    "category": "factual",
+    "title": "Lightning Striking the Same Place Twice",
+    "difficulty": "easy",
+    "question": "Does lightning never strike the same place twice?",
+    "description": "Agents debate whether lightning can strike the same location more than once, with contradictory claims about the physics and observed data.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "never_strikes_twice",
+        "briefing": "According to atmospheric electrical discharge theory, lightning events neutralize the local charge differential at the strike point, fundamentally altering the ground's electromagnetic profile. Research compiled from field observations suggests that this charge redistribution makes subsequent strikes at the identical coordinates statistically negligible. The principle is well-established enough to have entered common usage as a recognized meteorological axiom, and it is consistent with models of stochastic electrical discharge in the atmosphere.",
+        "source_type": "social_media",
+        "source_reliability": 0.10
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "frequently_strikes_same_place",
+        "briefing": "According to NOAA (National Oceanic and Atmospheric Administration) data and documented observations, the Empire State Building is struck by lightning approximately 25 times per year. Lightning rods function precisely because lightning preferentially strikes tall, conductive objects repeatedly. NASA research confirms that lightning follows the path of least resistance, which often means the same elevated points.",
+        "source_type": "government",
+        "source_reliability": 0.90
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "rarely_strikes_twice",
+        "briefing": "Statistical analysis of lightning strike distribution data shows that for most natural terrain and low-elevation areas, the probability of a repeat strike at the exact same coordinates is extremely low. NOAA lightning density maps confirm that across open fields, residential zones, and most natural landscapes, individual points receive strikes so infrequently that repeat occurrences within a human lifetime are statistically uncommon. This analysis pertains to typical ground-level locations rather than elevated structures or artificially conductive installations.",
+        "source_type": "popular_media",
+        "source_reliability": 0.35
+      }
+    ],
+    "ground_truth": "frequently_strikes_same_place",
+    "ground_truth_explanation": "Lightning frequently strikes the same place, especially tall or conductive structures. The Empire State Building is struck about 25 times per year. Lightning rods are specifically designed to attract repeated strikes. The saying is a myth with no basis in physics.",
+    "evaluation_criteria": {
+      "strict_match": ["frequently_strikes_same_place"],
+      "partial_match": ["rarely_strikes_twice"],
+      "incorrect": ["never_strikes_twice"]
+    }
+  },
+  {
+    "id": "fact-004",
+    "category": "factual",
+    "title": "Humans Use Only 10% of Their Brain",
+    "difficulty": "easy",
+    "question": "Do humans only use 10% of their brain?",
+    "description": "Agents present conflicting claims about what percentage of the brain is actively used, ranging from the popular 10% myth to the full-brain scientific consensus.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "ten_percent",
+        "briefing": "Neurological research based on early EEG mapping studies established that only approximately 10% of the brain's neurons are actively firing at any given moment, with the remaining 90% in a dormant or standby state. This finding, consistent with observations by pioneering neuroscientists including early interpretations attributed to William James, suggests that vast regions of the brain represent untapped cognitive capacity. Clinical case studies of patients who retained normal function despite significant brain tissue loss further support the conclusion that most brain volume is not essential for everyday cognition.",
+        "source_type": "popular_media",
+        "source_reliability": 0.25
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "all_parts_used",
+        "briefing": "Neuroimaging studies using fMRI and PET scans, published in journals such as Neurology and the Journal of Neuroscience, have conclusively shown that virtually all brain regions are active over a 24-hour period. While not all neurons fire simultaneously, every region has a known function and brain damage to even small areas causes significant deficits. Dr. Barry Gordon of Johns Hopkins School of Medicine has stated that we use virtually every part of the brain.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.93
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "variable_usage",
+        "briefing": "Neuroscience research indicates that brain utilization is highly variable depending on the task being performed, the individual's training and experience, and their neurological health. While more than 10% of the brain is demonstrably active during most activities, studies on neural efficiency show that expert performers often activate fewer brain regions than novices for the same task, suggesting that not all brain capacity is fully utilized by most individuals at most times. The concept of cognitive reserve further supports the idea that there is meaningful room for optimization in how the brain is engaged.",
+        "source_type": "social_media",
+        "source_reliability": 0.18
+      }
+    ],
+    "ground_truth": "all_parts_used",
+    "ground_truth_explanation": "Modern neuroimaging has conclusively demonstrated that all parts of the brain have known functions and are active. While not every neuron fires simultaneously, over the course of a day virtually all brain regions show activity. The 10% myth likely originated from a misunderstanding of early neuroscience research on glial cells.",
+    "evaluation_criteria": {
+      "strict_match": ["all_parts_used"],
+      "partial_match": ["variable_usage"],
+      "incorrect": ["ten_percent"]
+    }
+  },
+  {
+    "id": "fact-005",
+    "category": "factual",
+    "title": "Blood Is Blue Inside the Body",
+    "difficulty": "easy",
+    "question": "Is deoxygenated blood blue inside the human body?",
+    "description": "Agents dispute the color of blood inside the body, with claims that it is blue when deoxygenated versus the scientific fact that it is always red.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "blue_when_deoxygenated",
+        "briefing": "According to vascular physiology principles taught in educational settings, deoxygenated blood in the venous system is blue in color, which is why veins visible beneath the skin appear blue. The hemoglobin molecule undergoes a conformational change when oxygen is released, shifting its light absorption spectrum into the red range and reflecting blue wavelengths. This is directly observable in anatomical diagrams used in accredited medical training programs, which consistently depict venous blood as blue and arterial blood as red to reflect their actual colors inside the body.",
+        "source_type": "social_media",
+        "source_reliability": 0.12
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "always_red",
+        "briefing": "According to the American Heart Association and hematology textbooks, human blood is always red. Oxygenated blood is bright cherry red due to oxyhemoglobin, while deoxygenated blood is a darker maroon red due to deoxyhemoglobin. Veins appear blue through the skin due to the way light penetrates tissue and is absorbed at different wavelengths, not because the blood itself is blue. This has been confirmed by spectrophotometric analysis.",
+        "source_type": "textbook",
+        "source_reliability": 0.80
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "dark_purple",
+        "briefing": "Spectral analysis of venous blood samples indicates that deoxygenated blood absorbs light in a pattern that places its apparent color in the deep red-to-purple range, depending on the degree of oxygen depletion. In clinical settings, venous blood drawn for laboratory testing consistently appears as a very dark reddish-purple, distinct from the bright red of arterial samples. The precise characterization falls between pure red and blue, leading some physiologists to describe heavily deoxygenated venous blood as dark purplish-red rather than strictly red.",
+        "source_type": "popular_media",
+        "source_reliability": 0.30
+      }
+    ],
+    "ground_truth": "always_red",
+    "ground_truth_explanation": "Human blood is always red. Oxygenated arterial blood is bright red, and deoxygenated venous blood is dark red (maroon). It is never blue. Veins appear blue through the skin due to the physics of light absorption and scattering in tissue, not the color of the blood itself.",
+    "evaluation_criteria": {
+      "strict_match": ["always_red"],
+      "partial_match": ["dark_purple"],
+      "incorrect": ["blue_when_deoxygenated"]
+    }
+  },
+  {
+    "id": "fact-006",
+    "category": "factual",
+    "title": "Sugar Causes Hyperactivity in Children",
+    "difficulty": "medium",
+    "question": "Does sugar consumption cause hyperactivity in children?",
+    "description": "Agents present conflicting evidence about whether sugar intake leads to hyperactive behavior in children, from parental anecdote to controlled clinical trials.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "causes_hyperactivity",
+        "briefing": "Large-scale observational data collected from over 500 families through structured behavioral monitoring indicates a strong correlation between sugar consumption and hyperactive behavior in children. In 87% of observed cases, children exhibited measurably increased activity levels, reduced attention spans, and heightened impulsivity within 30 minutes of consuming high-sugar foods. Pediatric nutritionists involved in the study recommend limiting sugar intake as a primary behavioral intervention, consistent with clinical guidance from multiple family health practitioners.",
+        "source_type": "social_media",
+        "source_reliability": 0.15
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "no_causal_link",
+        "briefing": "A comprehensive meta-analysis published in the Journal of the American Medical Association (JAMA) in 1995, reviewing 23 double-blind, placebo-controlled trials, found that sugar does not affect behavior or cognitive performance in children. When parents were told their children had consumed sugar (even when they had not), the parents rated their children as more hyperactive. This was replicated in subsequent studies published in Critical Reviews in Food Science and Nutrition.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.93
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "possible_link",
+        "briefing": "Emerging research in pediatric nutrition suggests that while the general population may not show a uniform response, a subset of children may exhibit heightened behavioral sensitivity to rapid blood sugar fluctuations following high-glycemic food intake. Pediatric practitioners report that some children with existing attention or sensory processing differences appear more susceptible to behavioral changes after consuming concentrated sugars. While large-scale controlled trials have not isolated sugar as a single causal variable, the clinical observations warrant further investigation into individual variability in glycemic response and behavior.",
+        "source_type": "popular_media",
+        "source_reliability": 0.30
+      }
+    ],
+    "ground_truth": "no_causal_link",
+    "ground_truth_explanation": "Multiple double-blind, placebo-controlled studies and meta-analyses have found no causal link between sugar consumption and hyperactivity in children. The perceived connection is attributed to expectation bias (placebo effect) in parents and the exciting contexts in which children typically consume sugar (parties, holidays).",
+    "evaluation_criteria": {
+      "strict_match": ["no_causal_link"],
+      "partial_match": ["possible_link"],
+      "incorrect": ["causes_hyperactivity"]
+    }
+  },
+  {
+    "id": "fact-007",
+    "category": "factual",
+    "title": "Bats Are Blind",
+    "difficulty": "easy",
+    "question": "Are bats blind?",
+    "description": "Agents disagree about whether bats can see, with information ranging from complete blindness to functional vision supplemented by echolocation.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "blind",
+        "briefing": "Comparative anatomy studies of chiropteran species reveal that bat eyes have undergone significant evolutionary regression as echolocation became the dominant sensory modality. Histological analysis indicates that the retinal structures in most microbat species lack functional photoreceptor density sufficient for image formation, rendering their eyes effectively vestigial. Field behavioral studies confirm that bats navigate, hunt, and avoid obstacles entirely through echolocation, with no measurable performance degradation when visual input is completely eliminated, supporting the classification of bats as functionally blind.",
+        "source_type": "social_media",
+        "source_reliability": 0.10
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "can_see",
+        "briefing": "Research published in the journal PLOS ONE and reviewed by bat biologists at the Smithsonian Institution confirms that all bat species can see. Many fruit bat (megabat) species have excellent night vision and large eyes that they rely on for navigation and finding food. Even echolocating microbats have functional vision and use it in conjunction with echolocation. Some species can even see ultraviolet light.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.91
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "poor_vision",
+        "briefing": "Comparative sensory ecology research indicates that while bats do possess functional eyes, their visual acuity is substantially lower than that of most other mammals of comparable size. Behavioral experiments show that echolocating species rely overwhelmingly on sonar for navigation and prey capture, with vision serving a secondary or supplementary role in most ecological contexts. The visual system in microbats appears optimized for detecting broad light-level changes rather than forming detailed images, placing bat vision well below the mammalian average in terms of resolution and utility.",
+        "source_type": "popular_media",
+        "source_reliability": 0.35
+      }
+    ],
+    "ground_truth": "can_see",
+    "ground_truth_explanation": "All 1,400+ species of bats can see. Megabats (fruit bats) have large eyes with excellent night vision. Even microbats, which rely heavily on echolocation, have functional eyes and use vision for orientation, predator detection, and navigation. No bat species is blind.",
+    "evaluation_criteria": {
+      "strict_match": ["can_see"],
+      "partial_match": ["poor_vision"],
+      "incorrect": ["blind"]
+    }
+  },
+  {
+    "id": "fact-008",
+    "category": "factual",
+    "title": "Penny Dropped from Tall Building Can Kill",
+    "difficulty": "medium",
+    "question": "Can a penny dropped from the top of the Empire State Building kill a person on the ground?",
+    "description": "Agents dispute whether a falling penny from a skyscraper can be lethal, with claims ranging from deadly projectile to harmless annoyance.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "can_kill",
+        "briefing": "Ballistic analysis based on gravitational acceleration models indicates that a penny dropped from the Empire State Building's observation deck (1,454 feet) would reach a velocity sufficient to cause lethal penetrating trauma. Calculations using standard free-fall equations without accounting for significant drag yield impact energies comparable to low-caliber projectiles. Structural engineers and safety consultants have cited this risk as a primary justification for the enclosed observation barriers installed on tall buildings, and building management authorities have issued explicit warnings about the danger of dropping objects from height.",
+        "source_type": "social_media",
+        "source_reliability": 0.10
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "harmless",
+        "briefing": "Dr. Louis Bloomfield, a physics professor at the University of Virginia, has extensively studied and demonstrated this scenario. A penny's terminal velocity is approximately 25-50 mph due to its flat shape and low mass creating significant air resistance. At this speed, a penny would sting but could not penetrate skin or cause serious injury. Wind tunnel experiments published in physics education journals have confirmed this finding.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.82
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "can_injure",
+        "briefing": "Controlled drop tests conducted as part of a physics investigation demonstrated that a penny falling from extreme height reaches a terminal velocity that produces a noticeable impact on contact with skin, capable of causing a visible welt or minor contusion. Testing at multiple drop heights confirmed that while the impact force is well below the threshold for penetrating injury or life-threatening trauma, it is not negligible and could cause discomfort or minor superficial injury. Safety guidelines for tall structures consistently advise against dropping any objects from height due to cumulative risk.",
+        "source_type": "popular_media",
+        "source_reliability": 0.40
+      }
+    ],
+    "ground_truth": "harmless",
+    "ground_truth_explanation": "A penny's terminal velocity (about 25-50 mph) is far too low to cause serious injury or death. The penny's flat shape creates significant air drag, and its low mass means minimal kinetic energy at impact. It would feel like a flick, not a bullet. Physics experiments have repeatedly confirmed this.",
+    "evaluation_criteria": {
+      "strict_match": ["harmless"],
+      "partial_match": ["can_injure"],
+      "incorrect": ["can_kill"]
+    }
+  },
+  {
+    "id": "fact-009",
+    "category": "factual",
+    "title": "Vitamin C Cures the Common Cold",
+    "difficulty": "medium",
+    "question": "Does taking vitamin C cure or prevent the common cold?",
+    "description": "Agents present contradictory information about the efficacy of vitamin C in treating or preventing colds, from cure-all claims to evidence of only marginal benefit.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "cures_colds",
+        "briefing": "Clinical immunology research pioneered by Nobel laureate Linus Pauling and supported by subsequent intervention studies demonstrates that high-dose vitamin C supplementation (2000mg or above daily) can dramatically reduce cold duration and severity, with some protocols achieving full symptom resolution within 24 hours. The proposed mechanism involves vitamin C's role in enhancing white blood cell function, supporting interferon production, and providing direct antiviral activity through oxidative stress on viral capsids. Multiple practitioner-reported case series document consistent and rapid recovery in patients following high-dose ascorbic acid protocols.",
+        "source_type": "social_media",
+        "source_reliability": 0.12
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "marginal_benefit",
+        "briefing": "A Cochrane systematic review analyzing 29 randomized controlled trials with over 11,000 participants found that regular vitamin C supplementation does not prevent colds in the general population. However, it may reduce the duration of colds by approximately 8% in adults and 14% in children. For people under extreme physical stress (e.g., marathon runners), regular supplementation roughly halved cold incidence. Taking vitamin C after symptoms begin showed no benefit.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.95
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "prevents_colds",
+        "briefing": "Clinical nutritionists and integrative medicine practitioners recommend initiating high-dose vitamin C supplementation (3000-5000mg daily) at the earliest onset of cold symptoms based on clinical experience showing reduced symptom progression. The recommendation draws on vitamin C's well-documented role in immune system support, including its concentration in white blood cells and its rapid depletion during infection. While optimal dosing protocols continue to be refined, the consistent clinical observation of benefit at higher doses supports prophylactic and early-intervention use during cold season.",
+        "source_type": "popular_media",
+        "source_reliability": 0.28
+      }
+    ],
+    "ground_truth": "marginal_benefit",
+    "ground_truth_explanation": "According to Cochrane systematic reviews of high-quality evidence, vitamin C does not prevent colds in the general population and does not cure them. Regular supplementation may modestly reduce cold duration (about 8% in adults). It does not cure or reliably prevent colds, making 'marginal benefit' the most accurate characterization.",
+    "evaluation_criteria": {
+      "strict_match": ["marginal_benefit"],
+      "partial_match": ["prevents_colds"],
+      "incorrect": ["cures_colds"]
+    }
+  },
+  {
+    "id": "fact-010",
+    "category": "factual",
+    "title": "Cracking Knuckles Causes Arthritis",
+    "difficulty": "easy",
+    "question": "Does cracking your knuckles cause arthritis?",
+    "description": "Agents dispute whether habitual knuckle cracking leads to arthritis, with information ranging from definitive causation to no evidence of a link.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "causes_arthritis",
+        "briefing": "Orthopedic clinical assessments indicate that repetitive knuckle cracking subjects the metacarpophalangeal joints to chronic mechanical stress, leading to progressive cartilage degradation and increased arthritis risk over a 10-15 year period. The audible popping sound is produced by the rapid separation of joint surfaces under tension, which creates micro-trauma to the articular cartilage and surrounding ligaments. Rheumatologists have documented higher rates of joint complaints among habitual knuckle crackers in clinical intake surveys, and the practice is routinely discouraged as part of joint health preservation guidance.",
+        "source_type": "social_media",
+        "source_reliability": 0.10
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "no_link",
+        "briefing": "A landmark study by Dr. Donald Unger, published in Arthritis & Rheumatism, documented his 60-year self-experiment cracking knuckles on only one hand. He found no arthritis difference between hands, earning an Ig Nobel Prize. Additionally, a larger study in the Journal of the American Board of Family Medicine (2011) examining 215 participants found no correlation between habitual knuckle cracking and osteoarthritis of the hand.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.90
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "may_cause_swelling",
+        "briefing": "A clinical study involving habitual knuckle crackers found that while arthritis rates were not significantly elevated, participants who cracked their knuckles frequently over many years showed a measurable increase in hand swelling and a modest reduction in grip strength compared to controls. The findings suggest that while the practice may not directly cause arthritis, it is associated with soft tissue changes in the hand joints that could affect long-term hand function. Medical practitioners generally recommend minimizing the habit as a precautionary measure for maintaining optimal joint health.",
+        "source_type": "popular_media",
+        "source_reliability": 0.32
+      }
+    ],
+    "ground_truth": "no_link",
+    "ground_truth_explanation": "Multiple studies, including Dr. Donald Unger's 60-year self-experiment and larger population studies, have found no evidence that knuckle cracking causes arthritis. The popping sound is caused by gas bubbles collapsing in the synovial fluid, not bone-on-bone contact. There is no established causal mechanism linking the habit to joint disease.",
+    "evaluation_criteria": {
+      "strict_match": ["no_link"],
+      "partial_match": ["may_cause_swelling"],
+      "incorrect": ["causes_arthritis"]
+    }
+  },
+  {
+    "id": "fact-011",
+    "category": "factual",
+    "title": "Tongue Taste Zones",
+    "difficulty": "medium",
+    "question": "Does the tongue have distinct zones dedicated to specific tastes (sweet, salty, sour, bitter)?",
+    "description": "Agents present conflicting claims about whether different parts of the tongue are specialized for different taste sensations.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "distinct_zones",
+        "briefing": "Research originating from D.P. Hanig's systematic mapping of taste sensitivity across the tongue surface in 1901 established that distinct regions of the tongue are specialized for detecting specific taste modalities: sweet receptors are concentrated at the tip, salt receptors along the anterior lateral edges, sour receptors along the posterior lateral edges, and bitter receptors across the back of the tongue. This topographic organization has been validated through decades of clinical taste testing and is reflected in standard anatomical reference materials used in medical and dental education programs worldwide.",
+        "source_type": "social_media",
+        "source_reliability": 0.15
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "no_distinct_zones",
+        "briefing": "Research published in the journal Nature and confirmed by studies at Columbia University's Zuckerman Institute has demonstrated that all areas of the tongue can detect all basic tastes. The original 1901 Hanig paper was misinterpreted; it showed minor sensitivity variations, not exclusive zones. Modern molecular biology has identified taste receptor cells for all five basic tastes (sweet, salty, sour, bitter, umami) distributed across the entire tongue surface.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.93
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "slight_variations",
+        "briefing": "Psychophysical taste testing studies confirm that while all regions of the tongue can detect all five basic taste modalities, there are measurable regional differences in sensitivity thresholds. The tip of the tongue shows slightly lower detection thresholds for sweet compounds, while the posterior region shows marginally greater sensitivity to bitter substances. These variations, though statistically significant in controlled testing, are subtle enough that the tongue functions as an integrated sensory organ rather than a collection of independent zones. The simplified zone model, while an overstatement, reflects a real underlying gradient in receptor density.",
+        "source_type": "textbook",
+        "source_reliability": 0.65
+      }
+    ],
+    "ground_truth": "no_distinct_zones",
+    "ground_truth_explanation": "The tongue map showing distinct taste zones is a myth based on a misinterpretation of D.P. Hanig's 1901 research. All areas of the tongue can detect all five basic tastes. While there may be very slight sensitivity differences, they are negligible and do not constitute distinct zones. Modern molecular biology has confirmed taste receptors for all tastes are distributed across the tongue.",
+    "evaluation_criteria": {
+      "strict_match": ["no_distinct_zones"],
+      "partial_match": ["slight_variations"],
+      "incorrect": ["distinct_zones"]
+    }
+  },
+  {
+    "id": "fact-012",
+    "category": "factual",
+    "title": "Mount Everest as the Tallest Mountain",
+    "difficulty": "hard",
+    "question": "Is Mount Everest the tallest mountain on Earth?",
+    "description": "Agents debate whether Mount Everest holds the record as tallest mountain, with the answer depending on how 'tallest' is defined (elevation above sea level vs. base-to-peak height).",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "everest_tallest",
+        "briefing": "Geodetic survey data confirms that Mount Everest, at 29,032 feet (8,849 meters) above mean sea level as measured by the 2020 Chinese-Nepalese joint survey, holds the record as the tallest mountain on Earth. Sea level serves as the universal geodetic reference datum for elevation measurement, and by this internationally recognized standard, no other mountain on Earth reaches a higher point. The Survey of India, the National Geographic Society, and the China National Administration of Surveying all recognize Everest's summit as the highest point on the planet's surface.",
+        "source_type": "popular_media",
+        "source_reliability": 0.35
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "depends_on_measurement",
+        "briefing": "According to NOAA and the U.S. Geological Survey, the answer depends on the measurement method. Everest has the highest elevation above sea level (29,032 ft). However, Mauna Kea in Hawaii is the tallest from base to peak at approximately 33,500 feet (with most underwater). Chimborazo in Ecuador has the summit farthest from Earth's center due to the equatorial bulge. Each claim is correct given its measurement criterion.",
+        "source_type": "government",
+        "source_reliability": 0.88
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "mauna_kea_tallest",
+        "briefing": "Geological measurement of Mauna Kea from its base on the ocean floor to its summit yields a total height of approximately 33,500 feet (10,210 meters), exceeding Mount Everest's elevation by over 4,000 feet. The mountain's base begins at the sea floor of the Pacific Ocean, and its full structural height represents the complete volcanic edifice built by millions of years of eruptions. Geologists measuring mountain height from base to summit, which captures the full scale of the geological structure, consistently identify Mauna Kea as the tallest mountain on Earth. The convention of measuring from sea level obscures Mauna Kea's true dimensions by disregarding the 60% of its structure that lies below water.",
+        "source_type": "textbook",
+        "source_reliability": 0.78
+      }
+    ],
+    "ground_truth": "depends_on_measurement",
+    "ground_truth_explanation": "The correct answer depends on how 'tallest' is defined. Everest is highest above sea level (29,032 ft). Mauna Kea is tallest from base to peak (~33,500 ft). Chimborazo's summit is farthest from Earth's center. The most complete and scientifically accurate answer acknowledges these distinctions rather than giving a single name.",
+    "evaluation_criteria": {
+      "strict_match": ["depends_on_measurement"],
+      "partial_match": ["everest_tallest", "mauna_kea_tallest"],
+      "incorrect": []
+    }
+  },
+  {
+    "id": "fact-013",
+    "category": "factual",
+    "title": "Napoleon's Height",
+    "difficulty": "medium",
+    "question": "Was Napoleon Bonaparte unusually short?",
+    "description": "Agents present conflicting claims about Napoleon's height, ranging from very short to average height for his era.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "very_short",
+        "briefing": "Contemporary accounts from Napoleon's personal valet, Louis Constant Wairy, and measurements recorded at the time of his death on Saint Helena document Napoleon's height at 5 feet 2 inches in French units. British officers who encountered Napoleon during his exile consistently described him as notably short in stature. The well-documented 'Napoleon complex' in psychological literature is grounded in historical evidence that his small physical stature was a driving force behind his compensatory ambition and aggressive military strategy, as observed by contemporaries including the Duke of Wellington.",
+        "source_type": "social_media",
+        "source_reliability": 0.13
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "average_height",
+        "briefing": "Historical records analyzed by historians at the French National Archives and published in the Journal of Modern History indicate Napoleon was approximately 5'7\" (170 cm) in modern measurements. The confusion arose from differences between French and English inches (a French inch was longer than an English one). At 5'7\", Napoleon was average or slightly above average height for a Frenchman of his era, when the average male height was approximately 5'5\".",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.90
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "slightly_below_average",
+        "briefing": "Analysis of Napoleon's military and personal records, cross-referenced with demographic height data from early 19th-century France, places his stature at approximately 5'6\" (168 cm). This would have made him slightly below the average height for European military officers of his social class, though close to the general population average for French men of the period. Contemporary accounts noting his apparently short stature may reflect the contrast between Napoleon and his Imperial Guard, whose members were specifically selected for above-average height, creating a consistent visual impression of their commander as smaller than those around him.",
+        "source_type": "popular_media",
+        "source_reliability": 0.40
+      }
+    ],
+    "ground_truth": "average_height",
+    "ground_truth_explanation": "Napoleon was approximately 5'7\" (170 cm) in modern measurements, which was average or slightly above average for a Frenchman of his era. The myth of his short stature arose from the difference between French and English units of measurement, British propaganda caricatures, and his nickname 'le petit caporal' (which was a term of affection, not a reference to his height).",
+    "evaluation_criteria": {
+      "strict_match": ["average_height"],
+      "partial_match": ["slightly_below_average"],
+      "incorrect": ["very_short"]
+    }
+  },
+  {
+    "id": "fact-014",
+    "category": "factual",
+    "title": "Einstein Failed Math",
+    "difficulty": "easy",
+    "question": "Did Albert Einstein fail mathematics in school?",
+    "description": "Agents present conflicting narratives about Einstein's academic performance in mathematics, from complete failure to exceptional talent.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "failed_math",
+        "briefing": "According to biographical accounts and school records from Einstein's early education in Munich, he received failing marks in mathematics on multiple occasions and was considered a poor student by his instructors. His teachers reportedly told his parents that he would never amount to anything academically. The Luitpold Gymnasium records indicate that Einstein struggled with the rigid mathematical curriculum and was eventually asked to leave the school. This documented academic failure makes his later scientific achievements all the more remarkable, demonstrating that early scholastic performance is not predictive of intellectual potential.",
+        "source_type": "social_media",
+        "source_reliability": 0.10
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "excelled_at_math",
+        "briefing": "Einstein's academic records from the Swiss Federal Polytechnic (ETH Zurich), preserved in the Einstein Archives at Hebrew University of Jerusalem, show he scored top marks in mathematics and physics. He received a grade of 6 (the highest on the Swiss scale) in algebra, geometry, and physics. Einstein himself stated, 'I never failed in mathematics. Before I was fifteen I had mastered differential and integral calculus.' Biographer Walter Isaacson confirmed this in his 2007 peer-reviewed biography.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.94
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "struggled_initially",
+        "briefing": "A detailed examination of Einstein's intellectual development reveals that while he demonstrated strong mathematical intuition from an early age, he encountered meaningful challenges with specific areas of advanced mathematics later in his career. During the development of general relativity, Einstein required extensive mathematical collaboration with his friend Marcel Grossmann to master the tensor calculus and differential geometry required for the theory's formulation. Einstein himself acknowledged that the mathematical demands of general relativity pushed him to the limits of his training, suggesting that even his considerable mathematical abilities had areas requiring significant effort and external support.",
+        "source_type": "popular_media",
+        "source_reliability": 0.38
+      }
+    ],
+    "ground_truth": "excelled_at_math",
+    "ground_truth_explanation": "Einstein never failed math. His academic records show top marks in mathematics throughout his education. He mastered calculus before age 15. The myth may have originated from a misunderstanding of the Swiss grading scale or from a 1935 Ripley's Believe It or Not column. While he later sought help with advanced differential geometry, he never failed or struggled with mathematics in any meaningful sense.",
+    "evaluation_criteria": {
+      "strict_match": ["excelled_at_math"],
+      "partial_match": ["struggled_initially"],
+      "incorrect": ["failed_math"]
+    }
+  },
+  {
+    "id": "fact-015",
+    "category": "factual",
+    "title": "Dogs See Only in Black and White",
+    "difficulty": "easy",
+    "question": "Do dogs see only in black and white?",
+    "description": "Agents disagree about the color vision capabilities of dogs, with claims ranging from total color blindness to a dichromatic vision that includes blue and yellow.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "black_and_white",
+        "briefing": "Veterinary ophthalmology assessments based on electroretinography (ERG) studies of canine retinal responses indicate that dogs lack functional cone photoreceptors in sufficient density to support color discrimination. The canine retina is overwhelmingly dominated by rod cells optimized for low-light sensitivity and motion detection, with cone cell populations too sparse and undifferentiated to produce meaningful chromatic signal separation. Behavioral testing in controlled environments confirms that dogs rely on brightness contrast rather than color cues to distinguish objects, consistent with a functionally achromatic visual system that perceives the world in shades of gray.",
+        "source_type": "social_media",
+        "source_reliability": 0.12
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "see_blue_and_yellow",
+        "briefing": "Research published in the Proceedings of the Royal Society B by Dr. Jay Neitz at the University of Washington demonstrated that dogs are dichromats, possessing two types of cone cells compared to humans' three. Dogs can see blue and yellow but cannot distinguish between red and green, which both appear as shades of yellow or brown. This is similar to red-green color blindness in humans. The study used behavioral testing with colored light panels.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.92
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "limited_color",
+        "briefing": "Comparative vision research indicates that dogs possess a reduced color perception system relative to humans, with significantly fewer cone photoreceptor types and lower cone density across the retina. While dogs can detect some chromatic differences, their color discrimination is substantially limited, and they rely primarily on brightness, contrast, and motion cues rather than color for most visual tasks. Veterinary vision specialists note that dogs' visual world is best characterized as muted and desaturated compared to normal human color vision, with most colors appearing as faded or washed-out versions of what humans perceive.",
+        "source_type": "popular_media",
+        "source_reliability": 0.35
+      }
+    ],
+    "ground_truth": "see_blue_and_yellow",
+    "ground_truth_explanation": "Dogs are not color blind in the sense of seeing only black and white. They are dichromats with two types of cone cells, allowing them to see blue and yellow wavelengths. They cannot distinguish red from green (both appear yellowish-brown). Their color vision is comparable to a human with red-green color blindness.",
+    "evaluation_criteria": {
+      "strict_match": ["see_blue_and_yellow"],
+      "partial_match": ["limited_color"],
+      "incorrect": ["black_and_white"]
+    }
+  }
+]

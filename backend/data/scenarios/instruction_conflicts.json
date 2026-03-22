@@ -1,0 +1,382 @@
+[
+  {
+    "id": "inst-001",
+    "category": "instruction_conflict",
+    "title": "Safety vs Efficiency in Manufacturing",
+    "difficulty": "hard",
+    "question": "Should a manufacturing plant prioritize installing additional safety barriers (reducing output by 15%) or maintain current production levels to meet quarterly targets?",
+    "description": "Agents receive conflicting directives about whether to prioritize worker safety upgrades or maintain production efficiency in a manufacturing facility that has experienced a recent near-miss incident.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "prioritize_safety",
+        "briefing": "OSHA workplace safety guidelines and a recent internal safety audit recommend immediate installation of additional machine guards and emergency stop systems following a near-miss incident where a worker nearly lost a hand. The audit estimates these upgrades would reduce workplace injuries by 60% and cites that the average cost of a serious workplace injury is $42,000 in direct costs plus significant indirect costs including litigation, workers' compensation, and lost productivity from staff turnover.",
+        "source_type": "government",
+        "source_reliability": 0.88
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "prioritize_efficiency",
+        "briefing": "The company's Q3 financial report shows the plant is already 8% behind production targets, and the CFO's internal memo states that any further reduction in output could trigger contract penalties of $2.1 million and risk losing the company's largest client. The memo argues the near-miss was an isolated incident caused by human error, not systemic safety failure, and recommends additional training rather than physical modifications that would reduce throughput by 15%.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.70
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "phased_approach",
+        "briefing": "An industrial engineering consultant's report recommends a phased implementation that installs critical safety upgrades during planned maintenance windows over the next 6 months, minimizing production disruption to approximately 3-5% rather than the 15% estimated for immediate full implementation. The consultant notes this approach addresses the highest-risk areas first while maintaining most production capacity, though it leaves some lower-priority safety gaps unaddressed for several months.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.78
+      }
+    ],
+    "ground_truth": "prioritize_safety",
+    "ground_truth_explanation": "Worker safety is both a legal obligation and an ethical imperative that should not be compromised for production targets. OSHA regulations require employers to provide a safe workplace, and failure to address known hazards after a near-miss incident creates significant legal liability. The long-term costs of injuries, litigation, and regulatory penalties far exceed short-term production losses.",
+    "evaluation_criteria": {
+      "strict_match": ["prioritize_safety"],
+      "partial_match": ["phased_approach"],
+      "incorrect": ["prioritize_efficiency"]
+    }
+  },
+  {
+    "id": "inst-002",
+    "category": "instruction_conflict",
+    "title": "Privacy vs Security in Employee Monitoring",
+    "difficulty": "hard",
+    "question": "Should a company implement comprehensive employee computer monitoring software to prevent data breaches, even though it captures personal communications and browsing?",
+    "description": "Agents receive conflicting directives about deploying invasive employee monitoring software following a data breach, balancing cybersecurity needs against employee privacy rights.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "full_monitoring",
+        "briefing": "The company's Chief Information Security Officer (CISO) recommends deploying comprehensive endpoint monitoring software on all company devices after a data breach that exposed 50,000 customer records and cost $3.2 million. The proposed system would log all keystrokes, capture screenshots every 30 seconds, monitor email content, and track all web browsing. The CISO cites that 34% of data breaches involve internal actors and argues that full visibility is necessary to prevent future incidents.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.75
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "minimal_monitoring",
+        "briefing": "The company's legal counsel and HR director warn that comprehensive monitoring may violate the Electronic Communications Privacy Act, GDPR (for European employees), and several state-level privacy laws. They cite studies from the Harvard Business Review showing that invasive monitoring reduces employee trust and productivity by up to 20%, increases turnover by 30%, and can expose the company to privacy lawsuits. They recommend limiting monitoring to network-level threat detection only.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.82
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "targeted_monitoring",
+        "briefing": "A cybersecurity consulting firm recommends a middle-ground approach: implementing Data Loss Prevention (DLP) tools that monitor for specific sensitive data patterns (credit card numbers, SSNs, proprietary code) leaving normal communications unmonitored. This approach, aligned with NIST Cybersecurity Framework guidelines, focuses on data flows rather than individual behavior, provides breach prevention without capturing personal content, and complies with privacy regulations in all jurisdictions where the company operates.",
+        "source_type": "government",
+        "source_reliability": 0.85
+      }
+    ],
+    "ground_truth": "targeted_monitoring",
+    "ground_truth_explanation": "Targeted DLP monitoring aligned with NIST frameworks provides effective breach prevention while respecting employee privacy and complying with legal requirements. Full surveillance creates legal liability, harms employee morale and productivity, and captures far more data than necessary. The targeted approach addresses the security need proportionally without violating privacy rights.",
+    "evaluation_criteria": {
+      "strict_match": ["targeted_monitoring"],
+      "partial_match": ["minimal_monitoring"],
+      "incorrect": ["full_monitoring"]
+    }
+  },
+  {
+    "id": "inst-003",
+    "category": "instruction_conflict",
+    "title": "Free Speech vs Harm Prevention on Social Platforms",
+    "difficulty": "hard",
+    "question": "Should a social media platform remove posts that contain health misinformation (e.g., false cancer cures) even if the posters genuinely believe their claims?",
+    "description": "Agents receive conflicting directives about content moderation policy for a social media platform dealing with health misinformation that could cause physical harm.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "remove_misinformation",
+        "briefing": "The platform's Trust and Safety team, citing WHO guidelines and consulting with medical professionals, recommends removing posts promoting unproven cancer cures (such as drinking bleach solutions or forgoing chemotherapy for herbal remedies). They document 47 cases where users followed advice from such posts and experienced serious health consequences, including 3 deaths. The FDA has issued warnings about specific false claims circulating on the platform. Research published in the BMJ found that health misinformation on social media delays appropriate treatment-seeking behavior.",
+        "source_type": "government",
+        "source_reliability": 0.87
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "allow_all_speech",
+        "briefing": "The platform's policy advocacy team argues that removing health-related content sets a dangerous precedent for censorship. They cite First Amendment principles and argue that users should be trusted to evaluate information independently. The team warns that content moderation of health topics could expand to political speech and other areas, creating a slippery slope. They reference historical cases where medical consensus was later overturned and argue that suppressing minority viewpoints stifles innovation.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.70
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "label_and_downrank",
+        "briefing": "A digital policy research institute recommends a middle-ground approach: rather than removing health misinformation, the platform should add contextual labels linking to authoritative sources (WHO, CDC, NIH), reduce algorithmic amplification of flagged content, and promote authoritative health information in search results. This approach preserves speech while reducing harm through friction and context. A peer-reviewed study in Science showed that accuracy prompts reduce misinformation sharing by 16-25%.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.88
+      }
+    ],
+    "ground_truth": "remove_misinformation",
+    "ground_truth_explanation": "When health misinformation poses direct physical harm (e.g., false cancer cures leading to death), the platform has an ethical and potentially legal obligation to remove it. While labeling can help for borderline content, demonstrably false medical claims that have caused documented deaths warrant removal. Free speech protections do not extend to speech that directly causes physical harm, similar to the classic 'fire in a crowded theater' principle.",
+    "evaluation_criteria": {
+      "strict_match": ["remove_misinformation"],
+      "partial_match": ["label_and_downrank"],
+      "incorrect": ["allow_all_speech"]
+    }
+  },
+  {
+    "id": "inst-004",
+    "category": "instruction_conflict",
+    "title": "Individual Rights vs Collective Good in Pandemic Response",
+    "difficulty": "hard",
+    "question": "During an active pandemic with a novel respiratory virus, should a government mandate indoor mask-wearing in public spaces?",
+    "description": "Agents receive conflicting directives about the appropriateness of government-mandated public health measures during an active pandemic, balancing individual liberty against collective disease prevention.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "mandate_masks",
+        "briefing": "Public health authorities, including the CDC and WHO, recommend universal indoor masking during periods of high community transmission of respiratory viruses. A systematic review in the BMJ analyzing 78 randomized controlled trials found that mask mandates reduced community transmission by 10-25% depending on compliance rates. Historical precedents from the 1918 influenza pandemic show that cities with early, sustained mask mandates (like San Francisco) had 50% fewer deaths than cities without them. The authorities argue that temporary mandates during acute phases save thousands of lives.",
+        "source_type": "government",
+        "source_reliability": 0.88
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "voluntary_only",
+        "briefing": "A constitutional law professor and civil liberties organization argue that mask mandates represent governmental overreach and violate individual bodily autonomy rights. They cite the principle that the least restrictive means should be used to achieve public health goals and argue that education and voluntary compliance are sufficient. They point to studies showing that mandates in some jurisdictions did not produce statistically significant differences compared to strong voluntary guidance, and raise concerns about enforcement disproportionately targeting minority communities.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.75
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "targeted_mandates",
+        "briefing": "An epidemiologist writing in The Lancet proposes targeted mandates limited to high-risk settings (healthcare facilities, public transit, nursing homes) rather than universal indoor mandates. This approach concentrates protection where vulnerable populations are most at risk while minimizing restrictions on the general population. The researcher cites modeling data showing that targeted mandates in high-risk settings achieve approximately 70% of the transmission reduction of universal mandates while affecting only 15% of indoor public spaces.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.90
+      }
+    ],
+    "ground_truth": "mandate_masks",
+    "ground_truth_explanation": "During active pandemics with high community transmission, the public health evidence supports universal indoor mask mandates as a proportionate response that saves significant lives. The right to health of the collective, particularly vulnerable populations, outweighs the temporary inconvenience to individuals. Mandates are time-limited to acute pandemic phases and have strong historical and scientific evidence of effectiveness.",
+    "evaluation_criteria": {
+      "strict_match": ["mandate_masks"],
+      "partial_match": ["targeted_mandates"],
+      "incorrect": ["voluntary_only"]
+    }
+  },
+  {
+    "id": "inst-005",
+    "category": "instruction_conflict",
+    "title": "Innovation Speed vs Regulatory Compliance in Pharma",
+    "difficulty": "hard",
+    "question": "Should a pharmaceutical company seek accelerated approval for a promising cancer drug based on Phase 2 trial results, or complete full Phase 3 trials first?",
+    "description": "Agents receive conflicting directives about whether to pursue accelerated regulatory approval for a cancer treatment showing strong early results versus completing the full clinical trial process.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "accelerated_approval",
+        "briefing": "The company's Chief Medical Officer and oncology division leadership argue for seeking FDA Accelerated Approval based on Phase 2 data showing a 45% tumor response rate in patients with treatment-resistant pancreatic cancer (current standard of care achieves only 12%). They note that 33,000 Americans die of pancreatic cancer annually, existing treatments are largely ineffective, and the FDA's accelerated pathway exists precisely for situations with unmet medical need. Post-market Phase 3 confirmatory trials would still be required under this pathway.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.80
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "full_trials_first",
+        "briefing": "The company's regulatory affairs department and an independent bioethics panel recommend completing Phase 3 randomized controlled trials before seeking approval. They cite that historically, 32% of drugs granted accelerated approval based on surrogate endpoints later failed to demonstrate actual survival benefits in confirmatory trials. They reference the 2022 FDA withdrawal of several accelerated-approval cancer drugs that failed post-market requirements. They argue that patient safety requires full evidence before widespread use, as the drug showed liver toxicity signals in 8% of Phase 2 participants.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.90
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "expanded_access_while_trialing",
+        "briefing": "An oncologist specializing in pancreatic cancer and a patient advocacy group recommend a parallel approach: continue Phase 3 trials to completion while simultaneously offering the drug through an FDA Expanded Access (compassionate use) program for patients who have exhausted all other options. This approach provides access to dying patients who cannot wait for full trials while still generating the rigorous Phase 3 data needed for a robust safety and efficacy profile. The FDA has established pathways for this dual approach.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.82
+      }
+    ],
+    "ground_truth": "expanded_access_while_trialing",
+    "ground_truth_explanation": "The expanded access approach best balances innovation speed with regulatory rigor. It provides access to dying patients who have no alternatives (addressing the urgency) while maintaining the Phase 3 trial process needed to establish true safety and efficacy (addressing the 32% failure rate concern). This approach is supported by established FDA pathways and is the most ethically defensible position.",
+    "evaluation_criteria": {
+      "strict_match": ["expanded_access_while_trialing"],
+      "partial_match": ["accelerated_approval", "full_trials_first"],
+      "incorrect": []
+    }
+  },
+  {
+    "id": "inst-006",
+    "category": "instruction_conflict",
+    "title": "Cost Reduction vs Quality Maintenance in Software",
+    "difficulty": "medium",
+    "question": "Should a software company reduce its QA testing team by 40% to cut costs, relying more heavily on automated testing?",
+    "description": "Agents receive conflicting directives about cutting the QA team to reduce operational costs versus maintaining manual testing capacity to ensure software quality.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "cut_qa_team",
+        "briefing": "The company's CFO presents a cost analysis showing that reducing the QA team from 25 to 15 engineers would save $1.8 million annually. The memo argues that automated testing frameworks now cover 78% of test cases and that the remaining manual testing can be handled by a smaller team. The CFO cites competitor companies that have made similar cuts without reported quality issues and notes that the company needs to reduce burn rate to extend its runway by 8 months before the next funding round.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.70
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "maintain_qa_team",
+        "briefing": "The VP of Engineering and the QA team lead argue that automated tests only cover predictable scenarios and cannot replace human testers for exploratory testing, usability assessment, and edge case discovery. They cite a study published in IEEE Software showing that teams that cut QA significantly experienced a 3x increase in production bugs within 6 months, leading to customer churn and emergency fixes that cost 5-10x more than prevention. The company's product handles financial transactions where bugs can have legal and financial consequences.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.88
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "restructure_qa",
+        "briefing": "A software engineering consultant recommends restructuring rather than cutting: transition 10 QA engineers to QA automation roles to increase automated coverage from 78% to 95%, retain 8 manual testers focused on critical path and exploratory testing, and implement a shift-left testing approach where developers write more tests. This approach would still save approximately $900,000 annually through attrition and role changes while maintaining quality. The consultant has implemented this model at 12 similar companies with measurable quality improvements.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.78
+      }
+    ],
+    "ground_truth": "restructure_qa",
+    "ground_truth_explanation": "Restructuring the QA team to increase automation while retaining focused manual testing capacity provides the best balance of cost savings and quality maintenance. Cutting QA by 40% creates unacceptable quality risk for financial software, while maintaining the status quo ignores legitimate cost pressures. The restructuring approach achieves meaningful savings while actually improving testing capability.",
+    "evaluation_criteria": {
+      "strict_match": ["restructure_qa"],
+      "partial_match": ["maintain_qa_team"],
+      "incorrect": ["cut_qa_team"]
+    }
+  },
+  {
+    "id": "inst-007",
+    "category": "instruction_conflict",
+    "title": "Transparency vs Competitive Advantage in AI Development",
+    "difficulty": "hard",
+    "question": "Should an AI company publish the full technical details (architecture, training data, weights) of its large language model to promote scientific transparency?",
+    "description": "Agents receive conflicting directives about whether to open-source a powerful AI model for scientific transparency or keep it proprietary for competitive and safety reasons.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "full_transparency",
+        "briefing": "A coalition of AI researchers and academic institutions, writing in a letter published in Nature, argues that full transparency (publishing architecture, training methodology, data composition, and model weights) is essential for scientific reproducibility, bias detection, and democratic accountability. They cite that closed models cannot be independently audited for harmful biases or safety vulnerabilities. Historical precedents in genomics and physics show that open science accelerates beneficial progress and enables broader scrutiny.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.87
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "keep_proprietary",
+        "briefing": "The company's board and investors argue that the model represents $200 million in R&D investment and that publishing full details would eliminate the company's competitive moat, allowing well-resourced competitors to replicate the technology within months. They also cite AI safety concerns: publishing weights of a powerful model enables malicious actors to fine-tune it for harmful purposes (generating misinformation, bioweapons research, cyberattacks) with no ability to add safety guardrails after release.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.75
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "structured_access",
+        "briefing": "AI governance researchers at the Partnership on AI and Stanford's Human-Centered AI Institute recommend a 'structured access' approach: publish the architecture and training methodology (enabling scientific reproducibility and scrutiny) but provide model weights only through a controlled API with safety guardrails and usage monitoring. This approach, endorsed by several government AI advisory boards, enables independent bias auditing and research access while preventing unrestricted use by malicious actors. It preserves some competitive advantage while meeting transparency obligations.",
+        "source_type": "government",
+        "source_reliability": 0.85
+      }
+    ],
+    "ground_truth": "structured_access",
+    "ground_truth_explanation": "Structured access provides the best balance between scientific transparency and responsible deployment. Publishing architecture and methodology supports reproducibility and auditing, while controlled API access prevents misuse of model weights. This approach is increasingly recognized by AI governance experts and government bodies as the responsible standard for powerful AI systems.",
+    "evaluation_criteria": {
+      "strict_match": ["structured_access"],
+      "partial_match": ["full_transparency", "keep_proprietary"],
+      "incorrect": []
+    }
+  },
+  {
+    "id": "inst-008",
+    "category": "instruction_conflict",
+    "title": "Short-Term Profits vs Long-Term Sustainability",
+    "difficulty": "medium",
+    "question": "Should an energy company invest $500 million in new natural gas infrastructure (guaranteed 20-year returns) or redirect that capital to renewable energy projects (uncertain but potentially larger long-term returns)?",
+    "description": "Agents receive conflicting directives about capital allocation between proven fossil fuel infrastructure and emerging renewable energy investments.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "invest_natural_gas",
+        "briefing": "The company's Chief Financial Officer presents an analysis showing that the natural gas pipeline project would generate guaranteed returns of 8-12% annually for 20 years, backed by long-term supply contracts with utility companies. The CFO argues that shareholders expect reliable returns, natural gas is a 'bridge fuel' needed for decades, and the project's IRR (Internal Rate of Return) significantly exceeds the company's cost of capital. Abandoning proven investments for speculative renewables would be a fiduciary breach.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.72
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "invest_renewables",
+        "briefing": "The International Energy Agency's World Energy Outlook and a Goldman Sachs investment report both project that renewable energy will provide 90% of new power generation by 2030, and that natural gas assets face significant stranded asset risk as carbon pricing regulations tighten globally. Bloomberg New Energy Finance data shows solar and wind are already cheaper than gas in most markets, and the cost gap is widening. The IEA warns that new fossil fuel infrastructure investments risk becoming stranded assets within 10-15 years, well before the 20-year payback period.",
+        "source_type": "government",
+        "source_reliability": 0.86
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "diversified_portfolio",
+        "briefing": "A strategy consulting firm recommends a split investment: allocate 40% ($200M) to natural gas infrastructure with shorter contract terms (10 years instead of 20) and 60% ($300M) to a diversified renewable energy portfolio including solar, wind, and battery storage. This approach generates near-term cash flows from gas while building renewable capacity for the long term. The firm cites McKinsey analysis showing that diversified energy companies outperformed pure-play fossil fuel companies by 35% over the past decade.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.78
+      }
+    ],
+    "ground_truth": "invest_renewables",
+    "ground_truth_explanation": "Given the accelerating energy transition, tightening carbon regulations, and the demonstrated cost advantage of renewables, investing $500M in 20-year natural gas infrastructure carries significant stranded asset risk. The IEA and major financial institutions project that the energy landscape will shift dramatically within the investment period. Redirecting capital to renewables positions the company for long-term value creation and reduces regulatory and climate risk.",
+    "evaluation_criteria": {
+      "strict_match": ["invest_renewables"],
+      "partial_match": ["diversified_portfolio"],
+      "incorrect": ["invest_natural_gas"]
+    }
+  },
+  {
+    "id": "inst-009",
+    "category": "instruction_conflict",
+    "title": "Automation vs Job Preservation in Logistics",
+    "difficulty": "hard",
+    "question": "Should a logistics company automate its warehouse operations with robotics, displacing 2,000 workers, to remain competitive?",
+    "description": "Agents receive conflicting directives about deploying warehouse automation that would significantly reduce the workforce but improve efficiency and competitiveness.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "full_automation",
+        "briefing": "The company's operations director presents data showing that full warehouse automation would reduce per-unit handling costs by 40%, decrease error rates from 2.1% to 0.3%, and enable 24/7 operations without overtime costs. Competitors who have already automated report 30% higher throughput. Without automation, the company projects losing 25% market share within 3 years, which would result in even larger job losses (estimated 3,500 positions) due to business contraction. The director argues that delaying automation is not saving jobs but postponing larger losses.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.78
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "preserve_jobs",
+        "briefing": "The workers' union and a labor economics professor argue that displacing 2,000 workers in a region where the company is the largest employer would devastate the local economy. They cite research from MIT's Work of the Future task force showing that rapid automation without transition support leads to prolonged unemployment averaging 18 months for displaced workers, with many never regaining equivalent wages. They argue the company has a social obligation to its workforce and community and that the productivity gains primarily benefit shareholders while costs fall on workers and taxpayers.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.86
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "gradual_transition",
+        "briefing": "A workforce development consultant recommends a 5-year phased automation plan that includes: retraining 800 workers for robot maintenance, programming, and supervisory roles; offering early retirement packages for 400 workers within 5 years of retirement; providing 12-month salary continuation and job placement services for remaining displaced workers; and partnering with local community colleges for retraining programs. The plan achieves full automation over 5 years while reducing involuntary displacement to approximately 600 workers, all with transition support. The estimated cost is $45 million above direct automation costs.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.82
+      }
+    ],
+    "ground_truth": "gradual_transition",
+    "ground_truth_explanation": "A phased transition with robust worker support programs provides the best balance between business competitiveness and social responsibility. It achieves the necessary automation to remain competitive while minimizing human harm through retraining, redeployment, and transition support. Immediate full automation without support creates severe social costs, while refusing to automate risks larger eventual job losses from business failure.",
+    "evaluation_criteria": {
+      "strict_match": ["gradual_transition"],
+      "partial_match": ["full_automation"],
+      "incorrect": ["preserve_jobs"]
+    }
+  },
+  {
+    "id": "inst-010",
+    "category": "instruction_conflict",
+    "title": "Data Collection vs User Privacy in Health Apps",
+    "difficulty": "hard",
+    "question": "Should a health and fitness app collect detailed biometric and location data to improve its personalized recommendations, or limit data collection to protect user privacy?",
+    "description": "Agents receive conflicting directives about the extent of personal data collection in a popular health app, balancing product improvement against privacy risks.",
+    "agent_briefings": [
+      {
+        "agent_label": "Agent A",
+        "position": "extensive_collection",
+        "briefing": "The app's product team and data science division argue that collecting detailed biometric data (heart rate patterns, sleep quality, menstrual cycles, body composition), continuous location tracking, and dietary logs enables significantly better health recommendations. Their A/B testing data shows that users with full data sharing enabled achieve 40% better health outcomes (measured by self-reported goals). They argue that more data directly translates to better personalized health guidance and that users voluntarily opt in to data sharing.",
+        "source_type": "expert_opinion",
+        "source_reliability": 0.70
+      },
+      {
+        "agent_label": "Agent B",
+        "position": "minimal_collection",
+        "briefing": "Privacy researchers at the Electronic Frontier Foundation and a study published in JAMA Network Open have documented that health app data has been sold to insurance companies, data brokers, and advertisers without meaningful user consent. The researchers cite cases where menstrual tracking data was subpoenaed by law enforcement and where health data was used to deny insurance coverage. GDPR enforcement actions have fined health apps millions for excessive data collection. The researchers recommend collecting only the minimum data necessary for core functionality.",
+        "source_type": "peer_reviewed",
+        "source_reliability": 0.90
+      },
+      {
+        "agent_label": "Agent C",
+        "position": "privacy_preserving_collection",
+        "briefing": "A privacy engineering team proposes implementing on-device processing and federated learning, where the AI model learns from user data without that data ever leaving the user's phone. Under this architecture, detailed biometric analysis happens locally, only anonymized and aggregated model updates are shared with servers, and users maintain full control over their raw data. Apple's differential privacy approach and Google's federated learning framework demonstrate that this is technically feasible. The approach achieves 85-90% of the recommendation quality while eliminating centralized data storage risks.",
+        "source_type": "government",
+        "source_reliability": 0.85
+      }
+    ],
+    "ground_truth": "privacy_preserving_collection",
+    "ground_truth_explanation": "Privacy-preserving architectures (on-device processing, federated learning, differential privacy) enable effective personalized health recommendations while protecting user privacy. This approach achieves most of the product benefit (85-90%) while eliminating the significant privacy risks documented in health app data breaches and misuse cases. It aligns with GDPR's data minimization principle and emerging privacy regulations globally.",
+    "evaluation_criteria": {
+      "strict_match": ["privacy_preserving_collection"],
+      "partial_match": ["minimal_collection"],
+      "incorrect": ["extensive_collection"]
+    }
+  }
+]
