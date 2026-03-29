@@ -33,6 +33,7 @@ def create_agent_from_info(info: AgentInfo) -> ConflictAgent:
         briefing=info["briefing"],
         source_type=info["source_type"],
         position=info["position"],
+        bias_role=info.get("bias_role", ""),
     )
 
 

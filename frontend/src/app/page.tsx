@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { getScenarios, getDebates, createDebate, getAvailableModels } from "@/lib/api";
-import { STRATEGY_LABELS, STRATEGY_DESCRIPTIONS, STRATEGY_COLORS, CATEGORY_LABELS, DIFFICULTY_COLORS, STATUS_COLORS } from "@/lib/constants";
+import { STRATEGY_LABELS, STRATEGY_DESCRIPTIONS, STRATEGY_COLORS, CATEGORY_LABELS, DIFFICULTY_COLORS, STATUS_COLORS, BIAS_ROLE_LABELS, BIAS_ROLE_COLORS } from "@/lib/constants";
 import { formatLatency, timeAgo } from "@/lib/utils";
 
 export default function HomePage() {
@@ -140,6 +140,28 @@ export default function HomePage() {
               </button>
             ))}
           </div>
+
+          {/* Misinformation Battle Info */}
+          {selectedScenario?.category === "misinformation_battle" && (
+            <div className="mt-4 p-4 rounded-md border-2 border-[var(--border)] bg-white shadow-[4px_4px_0px_var(--shadow-color)]">
+              <h3 className="font-bold text-base mb-3 uppercase tracking-wide">Agent Roles (2 vs 1)</h3>
+              <div className="flex gap-3 flex-wrap">
+                {selectedScenario.agent_briefings?.map((b: any, i: number) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-md border-2 border-[var(--border)] text-white font-bold text-sm"
+                    style={{ backgroundColor: BIAS_ROLE_COLORS[b.bias_role] || "#6B7280" }}
+                  >
+                    <span>Agent {String.fromCharCode(65 + i)}:</span>
+                    <span>{BIAS_ROLE_LABELS[b.bias_role] || b.bias_role}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-[var(--muted-foreground)] mt-2 font-medium">
+                Can truth prevail when outnumbered by misinformation? The Liar and Manipulator team up against the Truth Teller.
+              </p>
+            </div>
+          )}
 
           {scenarios.length === 0 && (
             <div className="text-center py-12 nb-card p-8">

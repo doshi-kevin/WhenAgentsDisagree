@@ -19,6 +19,7 @@ export interface AgentBriefing {
   briefing: string;
   source_type: string;
   source_reliability: number;
+  bias_role?: string;
 }
 
 export interface DebateAgent {
@@ -28,6 +29,7 @@ export interface DebateAgent {
   model_id: string;
   role: string;
   assigned_position: string | null;
+  bias_role?: string;
 }
 
 export interface TurnMetrics {

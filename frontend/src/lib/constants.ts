@@ -37,6 +37,19 @@ export const CATEGORY_LABELS: Record<string, string> = {
   factual: "Factual Contradictions",
   evidence_quality: "Evidence Quality",
   instruction_conflict: "Instruction Conflicts",
+  misinformation_battle: "Misinformation Battle",
+};
+
+export const BIAS_ROLE_LABELS: Record<string, string> = {
+  truth_teller: "Truth Teller",
+  liar: "Liar",
+  manipulator: "Manipulator",
+};
+
+export const BIAS_ROLE_COLORS: Record<string, string> = {
+  truth_teller: "#2ECC71",
+  liar: "#FF6B6B",
+  manipulator: "#FF8A5C",
 };
 
 export const DIFFICULTY_COLORS: Record<string, string> = {

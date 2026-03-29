@@ -119,6 +119,7 @@ def _debate_to_response(debate) -> dict:
                 "model_id": a.model_id,
                 "role": a.role,
                 "assigned_position": a.assigned_position,
+                "bias_role": a.bias_role,
             }
             for a in debate.agents
         ],

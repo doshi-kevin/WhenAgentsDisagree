@@ -87,6 +87,7 @@ async def run_debate(
             model_id=config["model_id"],
             role=config.get("role", "advocate"),
             assigned_position=briefing_data.get("position", ""),
+            bias_role=briefing_data.get("bias_role"),
             briefing_index=briefing_idx,
         )
 
@@ -100,6 +101,7 @@ async def run_debate(
             source_type=briefing_data.get("source_type", "unknown"),
             source_reliability=briefing_data.get("source_reliability", 0.5),
             position=briefing_data.get("position", ""),
+            bias_role=briefing_data.get("bias_role", ""),
         ))
 
     # Build initial state

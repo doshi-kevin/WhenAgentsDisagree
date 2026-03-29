@@ -84,6 +84,7 @@ class DebateAgent(Base):
     model_id = Column(String, nullable=False)
     role = Column(String, default="advocate")  # advocate, judge, lead
     assigned_position = Column(Text, nullable=True)
+    bias_role = Column(String, nullable=True)  # truth_teller, liar, manipulator
     briefing_index = Column(Integer, nullable=True)
 
     debate = relationship("Debate", back_populates="agents")

@@ -13,6 +13,7 @@ class AgentInfo(TypedDict):
     source_type: str
     source_reliability: float
     position: str
+    bias_role: str
 
 
 class TurnRecord(TypedDict):

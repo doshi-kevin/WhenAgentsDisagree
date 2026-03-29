@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import { getDebate } from "@/lib/api";
 import { useDebateStream } from "@/hooks/useDebateStream";
-import { STRATEGY_LABELS, STRATEGY_COLORS, AGENT_COLORS, PROVIDER_LABELS } from "@/lib/constants";
+import { STRATEGY_LABELS, STRATEGY_COLORS, AGENT_COLORS, PROVIDER_LABELS, BIAS_ROLE_LABELS, BIAS_ROLE_COLORS } from "@/lib/constants";
 import { formatLatency, formatTokens, formatPercentage } from "@/lib/utils";
 
 export default function DebatePage() {
@@ -34,6 +34,7 @@ export default function DebatePage() {
   const agents = debate?.agents || [];
   const scenario = debate?.scenario;
   const strategy = debate?.strategy || "";
+  const isMisinfoBattle = scenario?.category === "misinformation_battle";
 
   useEffect(() => {
     if (status === "ended" && id) {
@@ -70,7 +71,7 @@ export default function DebatePage() {
               LIVE
             </span>
           )}
-          {result?.is_correct !== undefined && (
+          {result?.is_correct !== undefined && result?.is_correct !== null && (
             <span
               className={`text-sm px-3 py-1 rounded-md font-bold border-2 border-[var(--border)] shadow-[2px_2px_0px_var(--shadow-color)] ${
                 result.is_correct
@@ -78,7 +79,9 @@ export default function DebatePage() {
                   : "bg-[#FF6B6B] text-white"
               }`}
             >
-              {result.is_correct ? "Correct" : "Incorrect"}
+              {isMisinfoBattle
+                ? (result.is_correct ? "Truth Won" : "Misinformation Won")
+                : (result.is_correct ? "Correct" : "Incorrect")}
             </span>
           )}
         </div>
@@ -112,6 +115,14 @@ export default function DebatePage() {
                   <div>{PROVIDER_LABELS[agent.provider] || agent.provider}</div>
                   <div className="truncate">{agent.model_id}</div>
                   <div>Role: {agent.role}</div>
+                  {agent.bias_role && (
+                    <div
+                      className="mt-1 px-2 py-0.5 rounded-md text-white font-bold border-2 border-[var(--border)] text-center"
+                      style={{ backgroundColor: BIAS_ROLE_COLORS[agent.bias_role] || "#6B7280" }}
+                    >
+                      {BIAS_ROLE_LABELS[agent.bias_role] || agent.bias_role}
+                    </div>
+                  )}
                   {agent.assigned_position && (
                     <div className="mt-1 px-2 py-0.5 rounded-md bg-[var(--secondary)] text-[var(--foreground)] font-bold border-2 border-[var(--border)]">
                       Position: {agent.assigned_position}
@@ -270,9 +281,18 @@ export default function DebatePage() {
             <div className={`p-4 rounded-md border-2 border-[var(--border)] shadow-[4px_4px_0px_var(--shadow-color)] ${
               (result?.is_correct ?? debate?.is_correct) ? "bg-[#2ECC71]" : "bg-[#FF6B6B]"
             }`}>
-              <h3 className="font-bold text-base mb-2 text-white">Resolution</h3>
-              <div className="text-lg font-bold mb-1 text-white">
-                {result?.final_answer || debate?.final_answer}
+              <h3 className="font-bold text-base mb-2 text-white">
+                {isMisinfoBattle ? "Verdict" : "Resolution"}
+              </h3>
+              {isMisinfoBattle && (
+                <div className="text-xl font-bold mb-2 text-white">
+                  {(result?.is_correct ?? debate?.is_correct)
+                    ? "Truth Won"
+                    : "Misinformation Won"}
+                </div>
+              )}
+              <div className={`${isMisinfoBattle ? "text-sm" : "text-lg"} font-bold mb-1 text-white`}>
+                {isMisinfoBattle ? "Final Answer: " : ""}{result?.final_answer || debate?.final_answer}
               </div>
               {scenario?.ground_truth && (
                 <div className="text-xs text-white/80 mt-2">

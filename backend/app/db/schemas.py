@@ -10,6 +10,7 @@ class AgentBriefing(BaseModel):
     briefing: str
     source_type: str
     source_reliability: float = Field(ge=0.0, le=1.0)
+    bias_role: Optional[str] = None
 
 
 class ScenarioCreate(BaseModel):
@@ -99,6 +100,7 @@ class DebateAgentResponse(BaseModel):
     model_id: str
     role: str
     assigned_position: Optional[str]
+    bias_role: Optional[str] = None
 
     model_config = {"from_attributes": True}
 
