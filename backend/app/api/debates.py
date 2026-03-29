@@ -80,9 +80,10 @@ async def _run_debate_bg(
     max_rounds: int = 5,
 ):
     """Background task to run a debate."""
+    print(f"[DEBATE BG] {debate_id}: Background task started ({strategy}, {len(agent_configs)} agents, {max_rounds} rounds)")
     async with async_session() as db:
         try:
-            await run_debate(
+            result = await run_debate(
                 db=db,
                 debate_id=debate_id,
                 scenario_id=scenario_id,
@@ -91,8 +92,10 @@ async def _run_debate_bg(
                 experiment_id=experiment_id,
                 max_rounds=max_rounds,
             )
+            print(f"[DEBATE BG] {debate_id}: Finished - {result.get('total_turns', 0)} turns, "
+                  f"correct={result.get('is_correct')}, tokens={result.get('total_tokens', 0)}")
         except Exception as e:
-            print(f"[DEBATE ERROR] {debate_id}: {e}")
+            print(f"[DEBATE ERROR] {debate_id}: {type(e).__name__}: {e}")
             traceback.print_exc()
             await crud.update_debate(db, debate_id, status="failed")
 

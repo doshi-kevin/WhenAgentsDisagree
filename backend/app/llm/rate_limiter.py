@@ -16,7 +16,7 @@ class RateLimiter:
         self._limits = {
             "groq": {"rpm": 30, "rpd": 1000},
             "cerebras": {"rpm": 30, "rpd": 10000},
-            "openrouter": {"rpm": 20, "rpd": 200},
+            "openrouter": {"rpm": 6, "rpd": 200},
         }
 
     async def acquire(self, provider: str, model_id: str):

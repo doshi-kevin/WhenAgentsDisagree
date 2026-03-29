@@ -9,6 +9,41 @@ from app.graphs.common_nodes import (
 from collections import Counter
 
 
+def _build_novelty_section(agent_id: str, turns: list[dict]) -> str:
+    """Build a section reminding the agent what it already said and what opponents said since."""
+    own_args = []
+    opponent_recent = []
+
+    for t in turns:
+        if t.get("error"):
+            continue
+        parsed = t.get("parsed") or {}
+        arg_text = parsed.get("argument") or parsed.get("reasoning") or ""
+        if not arg_text:
+            continue
+
+        if t["agent_id"] == agent_id:
+            own_args.append(f"  - Round {t['round_number']}: {arg_text[:200]}")
+        else:
+            opponent_recent.append(
+                f"  - {t['agent_name']} (Round {t['round_number']}): {arg_text[:200]}"
+            )
+
+    if not own_args:
+        return ""
+
+    lines = ["\n## NOVELTY REQUIREMENT — DO NOT REPEAT YOURSELF"]
+    lines.append("Your previous arguments (DO NOT restate these):")
+    lines.extend(own_args[-3:])  # Last 3 to keep prompt manageable
+
+    if opponent_recent:
+        lines.append("\nOpponent claims you MUST address (pick at least one to rebut):")
+        lines.extend(opponent_recent[-4:])  # Most recent opponent turns
+
+    lines.append("")
+    return "\n".join(lines)
+
+
 async def initialize(state: DebateState) -> dict:
     """Initialize the structured debate."""
     return {
@@ -38,14 +73,41 @@ async def agent_argue(state: DebateState) -> dict:
             break
 
     collector = get_collector(state["debate_id"], state.get("deadlock_threshold", 0.90))
-    history = format_conversation_history(state.get("turns", []))
+    # Only include non-error turns in conversation history
+    valid_turns = [t for t in state.get("turns", []) if not t.get("error")]
+    history = format_conversation_history(valid_turns)
+
+    # Build novelty section to prevent repetition
+    novelty_section = _build_novelty_section(agent_info["agent_id"], valid_turns)
 
     result = await agent.argue(
         question=state["question"],
         conversation_history=history,
         round_number=state["current_round"],
         max_rounds=state["max_rounds"],
+        novelty_section=novelty_section,
     )
+
+    # If the LLM call failed, record a minimal error turn without corrupting metrics
+    if result.get("error"):
+        turn_number = len(state.get("turns", [])) + 1
+        error_turn = build_turn_record(
+            agent_info, result, turn_number, state["current_round"], "argument", {}
+        )
+        error_turn["error"] = result["error"]
+        return {
+            "turns": [error_turn],
+            "current_agent_index": idx + 1,
+            "events": [create_event("agent_error", {
+                "debate_id": state["debate_id"],
+                "agent_name": agent_info["name"],
+                "provider": agent_info["provider"],
+                "model_id": agent_info["model_id"],
+                "error": result["error"],
+                "round_number": state["current_round"],
+                "turn_number": turn_number,
+            })],
+        }
 
     parsed = result.get("parsed") or {}
     metrics = collector.compute_turn_metrics(

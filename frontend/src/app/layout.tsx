@@ -32,6 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <a href="/admin" className="px-5 py-2.5 font-bold text-[var(--foreground)] border-2 border-[var(--border)] bg-white shadow-[2px_2px_0px_var(--shadow-color)] rounded-md hover:shadow-[4px_4px_0px_var(--shadow-color)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all text-base">
                   Admin
                 </a>
+                <a href="/about" className="px-5 py-2.5 font-bold text-white border-2 border-[var(--border)] bg-[#6C5CE7] shadow-[2px_2px_0px_var(--shadow-color)] rounded-md hover:shadow-[4px_4px_0px_var(--shadow-color)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all text-base">
+                  About
+                </a>
               </div>
             </div>
           </div>

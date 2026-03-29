@@ -43,6 +43,7 @@ class ConflictAgent(BaseAgent):
         conversation_history: str,
         round_number: int,
         max_rounds: int,
+        novelty_section: str = "",
     ) -> dict:
         """Make an argument (Structured Debate strategy)."""
         system = self._system_prompt()
@@ -54,6 +55,7 @@ class ConflictAgent(BaseAgent):
             conversation_history=conversation_history or "No previous discussion yet.",
             round_number=round_number,
             max_rounds=max_rounds,
+            novelty_section=novelty_section,
         )
         return await self.invoke(system, user)
 

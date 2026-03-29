@@ -35,6 +35,7 @@ class TurnRecord(TypedDict):
     total_tokens: int
     latency_ms: int
     metrics: dict
+    error: Optional[str]
 
 
 class DebateState(TypedDict):

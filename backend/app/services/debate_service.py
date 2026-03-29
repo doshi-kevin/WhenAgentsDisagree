@@ -136,17 +136,44 @@ async def run_debate(
     graph = builder()
 
     try:
-        # Run the graph
-        final_state = await graph.ainvoke(initial_state)
+        # Run the graph, streaming events in real-time as each node completes
+        print(f"[DEBATE] {debate_id}: Starting {strategy} with {len(agents_info)} agents, {max_rounds} rounds")
+        all_turns = []
+        final_state = dict(initial_state)
 
-        # Publish all events
-        for event in final_state.get("events", []):
-            await publish_event(debate_id, event)
+        async for chunk in graph.astream(initial_state):
+            # astream yields {node_name: partial_state} dicts per node
+            for node_name, partial in chunk.items():
+                # Publish new events to SSE subscribers immediately
+                for event in partial.get("events", []):
+                    await publish_event(debate_id, event)
 
-        # Store turns and metrics in DB
+                # Accumulate turns
+                for t in partial.get("turns", []):
+                    all_turns.append(t)
+                    print(f"[DEBATE] {debate_id}: Turn {t.get('turn_number')} - "
+                          f"{t.get('agent_name')} ({t.get('provider')}:{t.get('model_id')}) "
+                          f"[{t.get('latency_ms', 0)}ms, {t.get('total_tokens', 0)} tokens]")
+
+                # Merge scalar fields from the latest partial update
+                for key in ("final_answer", "is_resolved", "is_correct",
+                            "deadlock_detected", "deadlock_resolution",
+                            "current_round", "current_agent_index", "votes",
+                            "source_rankings", "error"):
+                    if key in partial:
+                        final_state[key] = partial[key]
+
+        final_state["turns"] = all_turns
+        print(f"[DEBATE] {debate_id}: Completed - {len(all_turns)} turns")
+
+        # Store turns and metrics in DB (skip error turns for clean data)
         total_tokens = 0
         total_latency = 0
-        for turn_data in final_state.get("turns", []):
+        valid_turns = [t for t in final_state.get("turns", []) if not t.get("error")]
+        error_count = len(final_state.get("turns", [])) - len(valid_turns)
+        if error_count:
+            print(f"[DEBATE] {debate_id}: Skipping {error_count} error turns from DB storage")
+        for turn_data in valid_turns:
             db_turn = await crud.create_turn(
                 db,
                 debate_id=debate_id,
@@ -200,7 +227,7 @@ async def run_debate(
             is_correct=final_state.get("is_correct", False),
             total_tokens=total_tokens,
             total_latency_ms=total_latency,
-            total_turns=len(final_state.get("turns", [])),
+            total_turns=len(valid_turns),
             deadlock_detected=final_state.get("deadlock_detected", False),
             deadlock_resolution=final_state.get("deadlock_resolution", ""),
             completed_at=datetime.now(timezone.utc),
@@ -211,7 +238,7 @@ async def run_debate(
             "status": status,
             "final_answer": final_state.get("final_answer", ""),
             "is_correct": final_state.get("is_correct", False),
-            "total_turns": len(final_state.get("turns", [])),
+            "total_turns": len(valid_turns),
             "total_tokens": total_tokens,
             "total_latency_ms": total_latency,
             "deadlock_detected": final_state.get("deadlock_detected", False),

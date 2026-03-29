@@ -44,3 +44,4 @@ export const getConfidenceTrajectories = (debateId?: string) =>
   fetchAPI<any[]>(`/admin/confidence/trajectories${debateId ? `?debate_id=${debateId}` : ""}`);
 export const getAggressivenessHeatmap = () => fetchAPI<any[]>("/admin/aggressiveness/heatmap");
 export const getDeadlockStats = () => fetchAPI<any[]>("/admin/deadlocks/stats");
+export const getResearchInsights = () => fetchAPI<any>("/admin/research/insights");

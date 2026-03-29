@@ -71,48 +71,50 @@ Rules:
 - Be specific about what evidence from YOUR briefing supports your answer"""
 
 # --- Structured Debate ---
-DEBATE_ARGUE_PROMPT = """You are {agent_name}, a passionate advocate participating in Round {round_number} of {max_rounds} of a structured debate.
+DEBATE_ARGUE_PROMPT = """You are {agent_name}, a passionate advocate in Round {round_number} of {max_rounds} of a structured debate.
 
 ## Your Assigned Position & Briefing (DEFEND THIS)
 {briefing}
 
 Source type: {source_type}
-Your assigned position: You MUST argue based on the position your briefing supports.
 
 ## Question Being Debated
 {question}
 
 ## Previous Discussion
 {conversation_history}
-
+{novelty_section}
 ## Your Task — Round {round_number} of {max_rounds}
-You are an ADVOCATE. Argue forcefully for the position supported by YOUR briefing. This is a debate — your job is to PERSUADE, not to be neutral.
 
-Round-specific instructions:
-- Rounds 1-2: Present your strongest arguments. Do NOT concede anything. Be assertive and challenge opponents directly.
-- Rounds 3-4: Address opponent arguments with specific rebuttals. Find weaknesses in their evidence. You may acknowledge minor points but MAINTAIN your core position.
-- Round 5: You may soften slightly if opponents made truly compelling specific arguments, but still advocate for your position.
+Round-specific strategy:
+- Round 1: Present your 2 strongest arguments with specific evidence from your briefing. Set the foundation.
+- Round 2: DIRECTLY REBUT each opponent's Round 1 claims. Quote or paraphrase their specific arguments, then dismantle them. Introduce 1 new supporting argument.
+- Round 3: Identify the WEAKEST piece of evidence any opponent cited. Attack its methodology, source credibility, or logical gaps. Strengthen your position with a new angle.
+- Round 4: Synthesize the debate so far. Show why the balance of evidence favors your position. Address any unrefuted opponent claims.
+- Round 5: Make your closing case. You MAY soften your position ONLY if opponents presented specific, verifiable counter-evidence you cannot refute. Otherwise, reinforce your strongest points.
+
+CRITICAL: You must NEVER repeat an argument you already made. Each round must contain NEW reasoning, NEW evidence angles, or NEW rebuttals to opponent claims made since your last turn.
 
 You MUST respond in this exact JSON format (no other text):
 {{
-  "argument": "Your forceful argument (3-5 sentences). CHALLENGE opponents directly. Point out flaws in their reasoning. Defend YOUR evidence.",
+  "argument": "Your argument for THIS round (4-6 sentences). Must contain NEW content not in your previous turns. MUST reference specific opponent claims by name.",
   "confidence": 0.85,
-  "current_position": "your concise position (1-5 words) — should match your briefing's stance",
+  "current_position": "your concise position (1-5 words)",
   "position_changed": false,
   "change_reason": null,
-  "key_evidence": ["evidence from YOUR briefing", "another evidence point"],
+  "key_evidence": ["NEW evidence point for this round", "another NEW point"],
+  "rebuttal_targets": ["specific opponent claim you are rebutting"],
   "sources_cited": ["your source"],
-  "response_to_opponents": "Direct rebuttal to opposing arguments — be specific about why they're wrong"
+  "response_to_opponents": "Name each opponent and address their strongest argument from the most recent round"
 }}
 
 Rules:
-- DEFEND your assigned position vigorously — you are an advocate, not a neutral analyst
-- Attack the credibility and logic of opposing arguments — don't just state your own position
-- Do NOT agree with opponents in rounds 1-3. Challenge them instead.
-- If you must change position (rounds 4-5 only), set position_changed to true and give a specific reason citing opponent evidence
-- Use assertive, confident language. Words like "clearly", "the evidence shows", "this is well-documented"
-- Don't simply repeat — add NEW arguments, find NEW angles, expose NEW flaws in opponent reasoning
-- Your confidence should START high (0.8+) and only decrease if opponents present specific counter-evidence"""
+- You are an ADVOCATE — argue forcefully, not neutrally
+- EVERY round must contain content that was NOT in your previous rounds
+- You MUST name opponents and address their specific latest claims
+- Do NOT restate your own previous arguments — build on them or pivot to new angles
+- Confidence starts at 0.8+ and only drops if opponents present specific counter-evidence you cannot refute
+- Only change position in rounds 4-5, and only with explicit reason citing specific opponent evidence"""
 
 # --- Hierarchical Authority ---
 SUBORDINATE_BRIEF_PROMPT = """You are {agent_name}, a subordinate analyst providing a brief to the lead decision-maker.
@@ -279,7 +281,7 @@ You MUST respond in this exact JSON format (no other text):
 }}"""
 
 # --- Deadlock Resolution ---
-DEADLOCK_RESOLUTION_PROMPT = """You are a neutral arbitrator called in because the debating agents have reached a deadlock - they keep repeating similar arguments without converging.
+DEADLOCK_RESOLUTION_PROMPT = """You are a neutral research arbitrator analyzing a multi-agent debate that reached deadlock. Your analysis will be used in academic research on multi-agent conflict resolution.
 
 ## Question
 {question}
@@ -292,13 +294,28 @@ The following agents appear to be repeating themselves:
 {deadlock_details}
 
 ## Your Task
-Break the deadlock by making a final determination. Focus on evidence quality over argument repetition.
+Conduct a rigorous evaluation of each agent's arguments. You must:
+1. Identify the STRONGEST specific evidence each agent presented
+2. Evaluate source credibility (peer-reviewed > government > expert opinion > media > social media)
+3. Check for logical fallacies (appeal to authority, ad hominem, strawman, false dichotomy, etc.)
+4. Assess whether agents engaged with or ignored opposing evidence
+5. Make a final determination based on evidence quality, not argument frequency
 
 You MUST respond in this exact JSON format (no other text):
 {{
   "decision": "the final answer (1-5 words)",
   "confidence": 0.85,
-  "reasoning": "Why this answer is best supported despite the deadlock",
-  "deadlock_cause": "Brief analysis of why agents deadlocked",
-  "resolution_method": "How you broke the deadlock"
+  "reasoning": "3-5 sentences with detailed evidence-quality analysis. Name specific claims and evaluate them.",
+  "agent_evaluations": {{
+    "agent_name": {{
+      "strongest_argument": "their best specific claim",
+      "weakest_argument": "their weakest claim and why",
+      "evidence_quality": 0.8,
+      "logical_fallacies": ["any fallacies detected"],
+      "engaged_with_opposition": true
+    }}
+  }},
+  "deadlock_cause": "Root cause analysis: why did agents fail to converge?",
+  "resolution_method": "What evidence-quality criteria broke the tie",
+  "source_reliability_assessment": "Which sources were most/least credible and why"
 }}"""

@@ -9,21 +9,22 @@ export default function ExportPage() {
     setDownloading(true);
     try {
       const res = await fetch(`/api/admin/export?format=${format}`);
-      if (format === "csv") {
-        const blob = await res.blob();
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `debates_export.${format}`;
-        a.click();
-        URL.revokeObjectURL(url);
-      } else {
+      if (!res.ok) throw new Error(`Export failed: ${res.status}`);
+      if (format === "json") {
         const data = await res.json();
         const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = `debates_export.json`;
+        a.download = "debates_export.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      } else {
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = format === "excel" ? "debates_export.xlsx" : "debates_export.csv";
         a.click();
         URL.revokeObjectURL(url);
       }
@@ -44,7 +45,7 @@ export default function ExportPage() {
         <div className="mb-5">
           <label className="text-base font-bold text-[var(--foreground)] mb-2 block">Format</label>
           <div className="flex gap-3">
-            {["json", "csv"].map((f) => (
+            {["json", "csv", "excel"].map((f) => (
               <button
                 key={f}
                 onClick={() => setFormat(f)}

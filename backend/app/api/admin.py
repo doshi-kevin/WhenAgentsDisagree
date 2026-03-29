@@ -8,7 +8,8 @@ import io
 from app.db.engine import get_db
 from app.db import crud
 from app.db.schemas import OverviewStats
-from app.services.export_service import export_debates_csv, export_debates_json
+from app.services.export_service import export_debates_csv, export_debates_json, export_debates_excel
+from app.services.research_insights import compute_research_insights
 from app.llm.model_registry import get_all_models_info
 from app.llm.provider import rate_limiter
 
@@ -19,6 +20,12 @@ router = APIRouter(prefix="/admin", tags=["admin"])
 async def get_overview(db: AsyncSession = Depends(get_db)):
     stats = await crud.get_overview_stats(db)
     return stats
+
+
+@router.get("/research/insights")
+async def research_insights(db: AsyncSession = Depends(get_db)):
+    """Comprehensive research-grade analytics across all completed debates."""
+    return await compute_research_insights(db)
 
 
 @router.get("/strategies/compare")
@@ -158,17 +165,24 @@ async def deadlock_stats(db: AsyncSession = Depends(get_db)):
 
 @router.get("/export")
 async def export_data(
-    format: str = Query("json", pattern="^(json|csv)$"),
+    format: str = Query("json", pattern="^(json|csv|excel)$"),
     experiment_id: Optional[str] = None,
     db: AsyncSession = Depends(get_db),
 ):
-    """Export data in CSV or JSON format."""
+    """Export data in CSV, JSON, or Excel format."""
     if format == "csv":
         csv_data = await export_debates_csv(db, experiment_id)
         return StreamingResponse(
             io.StringIO(csv_data),
             media_type="text/csv",
             headers={"Content-Disposition": "attachment; filename=debates_export.csv"},
+        )
+    elif format == "excel":
+        excel_data = await export_debates_excel(db, experiment_id)
+        return StreamingResponse(
+            io.BytesIO(excel_data),
+            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            headers={"Content-Disposition": "attachment; filename=debates_export.xlsx"},
         )
     else:
         json_data = await export_debates_json(db, experiment_id)

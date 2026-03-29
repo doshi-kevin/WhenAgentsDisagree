@@ -51,6 +51,24 @@ async def rank_sources(state: DebateState) -> dict:
         all_sources=all_sources,
     )
 
+    turn_number = len(state.get("turns", [])) + 1
+
+    if result.get("error"):
+        error_turn = build_turn_record(agent_info, result, turn_number, 1, "evaluation", {})
+        error_turn["error"] = result["error"]
+        return {
+            "turns": [error_turn],
+            "current_agent_index": idx + 1,
+            "events": [create_event("agent_error", {
+                "debate_id": state["debate_id"],
+                "agent_name": agent_info["name"],
+                "provider": agent_info["provider"],
+                "model_id": agent_info["model_id"],
+                "error": result["error"],
+                "turn_number": turn_number,
+            })],
+        }
+
     parsed = result.get("parsed") or {}
     metrics = collector.compute_turn_metrics(
         agent_id=agent_info["agent_id"],
@@ -60,7 +78,6 @@ async def rank_sources(state: DebateState) -> dict:
         source_type=agent_info.get("source_type", "unknown"),
     )
 
-    turn_number = len(state.get("turns", [])) + 1
     turn = build_turn_record(agent_info, result, turn_number, 1, "evaluation", metrics)
 
     # Store rankings
@@ -144,6 +161,24 @@ async def weighted_vote(state: DebateState) -> dict:
         conversation_history="",
     )
 
+    turn_number = len(state.get("turns", [])) + 1
+
+    if result.get("error"):
+        error_turn = build_turn_record(agent_info, result, turn_number, 2, "vote", {})
+        error_turn["error"] = result["error"]
+        return {
+            "turns": [error_turn],
+            "current_agent_index": idx + 1,
+            "events": [create_event("agent_error", {
+                "debate_id": state["debate_id"],
+                "agent_name": agent_info["name"],
+                "provider": agent_info["provider"],
+                "model_id": agent_info["model_id"],
+                "error": result["error"],
+                "turn_number": turn_number,
+            })],
+        }
+
     parsed = result.get("parsed") or {}
     metrics = collector.compute_turn_metrics(
         agent_id=agent_info["agent_id"],
@@ -153,7 +188,6 @@ async def weighted_vote(state: DebateState) -> dict:
         source_type=agent_info.get("source_type", "unknown"),
     )
 
-    turn_number = len(state.get("turns", [])) + 1
     turn = build_turn_record(agent_info, result, turn_number, 2, "vote", metrics)
 
     # Record vote with evidence weight

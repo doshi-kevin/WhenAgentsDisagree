@@ -38,6 +38,25 @@ async def subordinate_brief(state: DebateState) -> dict:
     collector = get_collector(state["debate_id"], state.get("deadlock_threshold", 0.90))
 
     result = await agent.brief_subordinate(state["question"])
+
+    turn_number = len(state.get("turns", [])) + 1
+
+    if result.get("error"):
+        error_turn = build_turn_record(agent_info, result, turn_number, 1, "argument", {})
+        error_turn["error"] = result["error"]
+        return {
+            "turns": [error_turn],
+            "current_agent_index": idx + 1,
+            "events": [create_event("agent_error", {
+                "debate_id": state["debate_id"],
+                "agent_name": agent_info["name"],
+                "provider": agent_info["provider"],
+                "model_id": agent_info["model_id"],
+                "error": result["error"],
+                "turn_number": turn_number,
+            })],
+        }
+
     parsed = result.get("parsed") or {}
 
     metrics = collector.compute_turn_metrics(
@@ -48,7 +67,6 @@ async def subordinate_brief(state: DebateState) -> dict:
         source_type=agent_info.get("source_type", "unknown"),
     )
 
-    turn_number = len(state.get("turns", [])) + 1
     turn = build_turn_record(agent_info, result, turn_number, 1, "argument", metrics)
 
     return {

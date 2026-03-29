@@ -33,6 +33,26 @@ async def agent_vote(state: DebateState) -> dict:
 
     # Agent votes
     result = await agent.vote(state["question"])
+
+    turn_number = len(state.get("turns", [])) + 1
+
+    # Handle LLM errors gracefully
+    if result.get("error"):
+        error_turn = build_turn_record(agent_info, result, turn_number, 1, "vote", {})
+        error_turn["error"] = result["error"]
+        return {
+            "turns": [error_turn],
+            "current_agent_index": idx + 1,
+            "events": [create_event("agent_error", {
+                "debate_id": state["debate_id"],
+                "agent_name": agent_info["name"],
+                "provider": agent_info["provider"],
+                "model_id": agent_info["model_id"],
+                "error": result["error"],
+                "turn_number": turn_number,
+            })],
+        }
+
     parsed = result.get("parsed") or {}
 
     # Compute metrics
@@ -44,7 +64,6 @@ async def agent_vote(state: DebateState) -> dict:
         source_type=agent_info.get("source_type", "unknown"),
     )
 
-    turn_number = len(state.get("turns", [])) + 1
     turn = build_turn_record(agent_info, result, turn_number, 1, "vote", metrics)
 
     # Record vote

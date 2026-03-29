@@ -30,8 +30,8 @@ PROVIDER_CONFIG = {
         "base_url": "https://openrouter.ai/api/v1",
         "api_key": lambda: settings.openrouter_api_key,
         "models": {
-            "nvidia/nemotron-3-super-120b-a12b:free": {"rpm": 20, "rpd": 200},
-            "meta-llama/llama-3.3-70b-instruct:free": {"rpm": 20, "rpd": 200},
+            "nvidia/nemotron-3-super-120b-a12b:free": {"rpm": 6, "rpd": 200},
+            "meta-llama/llama-3.3-70b-instruct:free": {"rpm": 6, "rpd": 200},
         },
     },
 }
@@ -82,7 +82,7 @@ async def invoke_llm(
         HumanMessage(content=user_prompt),
     ]
 
-    max_retries = 3
+    max_retries = 5
     start_time = time.time()
 
     for attempt in range(max_retries):
@@ -116,12 +116,13 @@ async def invoke_llm(
             error_str = str(e)
             # Retry on rate limit (429) with exponential backoff
             if "429" in error_str and attempt < max_retries - 1:
-                wait = (attempt + 1) * 5  # 5s, 10s
-                print(f"[RATE LIMIT] {provider}:{model_id} - retrying in {wait}s (attempt {attempt + 1})")
+                wait = min(10 * (2 ** attempt), 60)  # 10s, 20s, 40s, 60s
+                print(f"[RATE LIMIT] {provider}:{model_id} - retrying in {wait}s (attempt {attempt + 1}/{max_retries})")
                 await asyncio.sleep(wait)
                 continue
 
             latency_ms = int((time.time() - start_time) * 1000)
+            print(f"[LLM ERROR] {provider}:{model_id} - {error_str[:200]}")
             return {
                 "content": f"Error: {error_str}",
                 "parsed": None,
