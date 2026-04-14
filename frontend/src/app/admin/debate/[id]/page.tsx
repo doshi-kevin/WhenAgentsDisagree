@@ -277,9 +277,10 @@ export default function DebateDeepDivePage() {
             const isError = turn.content?.startsWith("Error:");
 
             let displayContent = turn.content;
+            let parsedData: any = null;
             try {
-              const parsed = JSON.parse(turn.content);
-              displayContent = parsed?.argument || parsed?.reasoning || parsed?.summary || parsed?.decision || turn.content;
+              parsedData = JSON.parse(turn.content);
+              displayContent = parsedData?.argument || parsedData?.reasoning || parsedData?.summary || parsedData?.decision || turn.content;
             } catch {}
 
             return (
@@ -293,6 +294,11 @@ export default function DebateDeepDivePage() {
                   <span className="text-xs text-[var(--muted-foreground)]">
                     {formatLatency(turn.latency_ms)} &middot; {formatTokens(turn.total_tokens)} tokens
                   </span>
+                  {turn.position_held && (
+                    <span className="text-xs px-2 py-0.5 rounded bg-blue-50 text-blue-800 font-bold border border-blue-200">
+                      Position: {turn.position_held}
+                    </span>
+                  )}
                   {isError && (
                     <span className="text-xs px-2 py-0.5 rounded bg-red-100 text-red-700 font-bold border border-red-300">
                       API Error
@@ -300,7 +306,43 @@ export default function DebateDeepDivePage() {
                   )}
                 </div>
 
-                <p className="text-sm leading-relaxed mb-3 whitespace-pre-wrap">{displayContent}</p>
+                <p className="text-sm leading-relaxed mb-2 whitespace-pre-wrap font-medium">{displayContent}</p>
+
+                {/* Raw evidence and rebuttal details from parsed JSON */}
+                {parsedData && (
+                  <div className="mb-3 space-y-1.5">
+                    {parsedData.key_evidence && parsedData.key_evidence.length > 0 && (
+                      <div className="text-xs">
+                        <span className="font-black text-gray-600 uppercase tracking-wider">Key Evidence: </span>
+                        {parsedData.key_evidence.map((e: string, ei: number) => (
+                          <span key={ei} className="inline-block mr-1.5 mb-1 px-2 py-0.5 rounded bg-green-50 border border-green-200 text-green-800 font-semibold">{e}</span>
+                        ))}
+                      </div>
+                    )}
+                    {parsedData.rebuttal_targets && parsedData.rebuttal_targets.length > 0 && (
+                      <div className="text-xs">
+                        <span className="font-black text-gray-600 uppercase tracking-wider">Rebuttal Targets: </span>
+                        {parsedData.rebuttal_targets.map((r: string, ri: number) => (
+                          <span key={ri} className="inline-block mr-1.5 mb-1 px-2 py-0.5 rounded bg-red-50 border border-red-200 text-red-800 font-semibold">{r}</span>
+                        ))}
+                      </div>
+                    )}
+                    {parsedData.response_to_opponents && (
+                      <div className="text-xs bg-amber-50 border border-amber-200 rounded p-2">
+                        <span className="font-black text-amber-700 uppercase tracking-wider">Response to Opponents: </span>
+                        <span className="text-amber-900">{parsedData.response_to_opponents}</span>
+                      </div>
+                    )}
+                    {parsedData.sources_cited && parsedData.sources_cited.length > 0 && (
+                      <div className="text-xs">
+                        <span className="font-black text-gray-600 uppercase tracking-wider">Sources: </span>
+                        {(typeof parsedData.sources_cited[0] === "string" ? parsedData.sources_cited : parsedData.sources_cited.map((s: any) => s.source || s)).map((s: string, si: number) => (
+                          <span key={si} className="inline-block mr-1.5 mb-1 px-2 py-0.5 rounded bg-purple-50 border border-purple-200 text-purple-800 font-semibold">{s}</span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* Metrics grid */}
                 {metrics && !isError && (

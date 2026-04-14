@@ -82,6 +82,9 @@ export default function ResearchInsightsPage() {
   const posChanges = data.position_change_dynamics || {};
   const deadlockData = data.deadlock_analysis || {};
   const findings = data.key_findings || [];
+  const statTests = data.statistical_tests || {};
+  const behavioralDNA = data.behavioral_dna || [];
+  const effectSizes = data.cross_strategy_effect_sizes || [];
 
   return (
     <div className="space-y-8">
@@ -105,6 +108,156 @@ export default function ResearchInsightsPage() {
           ))}
         </ul>
       </div>
+
+      {/* Statistical Significance Tests */}
+      {(statTests.pairwise_accuracy_chi2 || []).length > 0 && (
+        <div className="nb-card p-6 border-l-8 border-l-[#6C5CE7]">
+          <h2 className="text-lg font-black uppercase tracking-wider mb-1">Statistical Significance</h2>
+          <p className="text-xs text-gray-500 mb-4">{statTests.methodology_note}</p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-[var(--border)]">
+                  <th className="text-left py-2 font-black">Comparison</th>
+                  <th className="text-right py-2 font-black">Acc. 1</th>
+                  <th className="text-right py-2 font-black">Acc. 2</th>
+                  <th className="text-right py-2 font-black">&chi;&sup2;</th>
+                  <th className="text-right py-2 font-black">p-value</th>
+                  <th className="text-right py-2 font-black">Cohen&apos;s d</th>
+                  <th className="text-right py-2 font-black">Effect</th>
+                  <th className="text-center py-2 font-black">Sig?</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(statTests.pairwise_accuracy_chi2 || []).map((t: any, i: number) => (
+                  <tr key={i} className="border-b border-gray-200">
+                    <td className="py-2 font-mono text-xs">{t.comparison}</td>
+                    <td className="text-right py-2">{(t.accuracy_1 * 100).toFixed(0)}%</td>
+                    <td className="text-right py-2">{(t.accuracy_2 * 100).toFixed(0)}%</td>
+                    <td className="text-right py-2 font-mono">{t.chi2?.toFixed(2)}</td>
+                    <td className={`text-right py-2 font-bold ${t.significant ? "text-green-700" : "text-gray-500"}`}>
+                      {t.p_value < 0.001 ? "<0.001" : t.p_value?.toFixed(3)}
+                    </td>
+                    <td className="text-right py-2 font-mono">{t.effect_size_d?.toFixed(2)}</td>
+                    <td className="text-right py-2">
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded border ${
+                        t.effect_magnitude === "large" ? "bg-red-100 border-red-300 text-red-800" :
+                        t.effect_magnitude === "medium" ? "bg-yellow-100 border-yellow-300 text-yellow-800" :
+                        t.effect_magnitude === "small" ? "bg-blue-100 border-blue-300 text-blue-800" :
+                        "bg-gray-100 border-gray-300 text-gray-600"
+                      }`}>{t.effect_magnitude}</span>
+                    </td>
+                    <td className="text-center py-2">
+                      {t.significant
+                        ? <span className="text-green-600 font-black text-lg">*</span>
+                        : <span className="text-gray-400">ns</span>}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Behavioral DNA Fingerprints */}
+      {behavioralDNA.length > 0 && (
+        <div className="nb-card p-6 border-l-8 border-l-[#FF6B6B]">
+          <h2 className="text-lg font-black uppercase tracking-wider mb-1">Model Behavioral DNA</h2>
+          <p className="text-xs text-gray-500 mb-4">
+            10-dimensional behavioral fingerprint uniquely characterizing each model&apos;s debate behavior
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {behavioralDNA.map((dna: any) => {
+              const norm = dna.dna_normalized || {};
+              const radarDims = [
+                { dim: "Confidence", val: Math.round((norm.confidence || 0) * 100) },
+                { dim: "Volatility", val: Math.round((norm.volatility || 0) * 100) },
+                { dim: "Aggression", val: Math.round((norm.aggressiveness || 0) * 100) },
+                { dim: "Escalation", val: Math.round((norm.escalation || 0) * 100) },
+                { dim: "Cooperation", val: Math.round((norm.cooperation || 0) * 100) },
+                { dim: "Novelty", val: Math.round((norm.novelty_retention || 0) * 100) },
+                { dim: "Stubbornness", val: Math.round((norm.stubbornness || 0) * 100) },
+                { dim: "Evidence", val: Math.round((norm.evidence_use || 0) * 100) },
+                { dim: "Verbosity", val: Math.round((norm.verbosity || 0) * 100) },
+                { dim: "Hedging", val: Math.round((norm.hedging || 0) * 100) },
+              ];
+              const archetype = dna.archetype || {};
+              const archetypeColors: Record<string, string> = {
+                "The Bulldozer": "bg-red-100 text-red-800 border-red-300",
+                "The Scholar": "bg-blue-100 text-blue-800 border-blue-300",
+                "The Chameleon": "bg-purple-100 text-purple-800 border-purple-300",
+                "The Wall": "bg-gray-200 text-gray-800 border-gray-400",
+                "The Diplomat": "bg-green-100 text-green-800 border-green-300",
+                "The Prosecutor": "bg-orange-100 text-orange-800 border-orange-300",
+                "The Generalist": "bg-yellow-100 text-yellow-800 border-yellow-300",
+              };
+
+              return (
+                <div key={`${dna.provider}:${dna.model_id}`} className="p-4 border-2 border-[var(--border)] rounded-lg shadow-[3px_3px_0px_var(--shadow-color)] bg-white">
+                  <div className="flex items-center justify-between mb-2">
+                    <div>
+                      <div className="text-sm font-black">{dna.model_id.split("/").pop()?.replace(/:.*/, "")}</div>
+                      <div className="text-xs text-gray-500">{dna.provider} &middot; {dna.debates_sampled} debates</div>
+                    </div>
+                    <span className={`text-xs font-bold px-2 py-1 rounded border-2 ${archetypeColors[archetype.name] || "bg-gray-100 text-gray-700 border-gray-300"}`}>
+                      {archetype.name}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mb-3 italic">{archetype.description}</p>
+                  <ResponsiveContainer width="100%" height={200}>
+                    <RadarChart data={radarDims}>
+                      <PolarGrid stroke="#D1D5DB" />
+                      <PolarAngleAxis dataKey="dim" tick={{ fontSize: 8, fontWeight: 700 }} />
+                      <PolarRadiusAxis domain={[0, 100]} tick={false} />
+                      <Radar dataKey="val" stroke="#FF6B6B" fill="#FF6B6B" fillOpacity={0.25} strokeWidth={2} />
+                      <Tooltip formatter={(v: any) => `${v}%`} />
+                    </RadarChart>
+                  </ResponsiveContainer>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Cross-Strategy Effect Sizes */}
+      {effectSizes.length > 0 && (
+        <div className="nb-card p-6">
+          <h3 className="text-base font-black uppercase tracking-wider mb-4">
+            Cross-Strategy Effect Sizes (Cohen&apos;s d)
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-[var(--border)]">
+                  <th className="text-left py-2 font-black">Metric</th>
+                  <th className="text-left py-2 font-black">Comparison</th>
+                  <th className="text-right py-2 font-black">Cohen&apos;s d</th>
+                  <th className="text-right py-2 font-black">Magnitude</th>
+                </tr>
+              </thead>
+              <tbody>
+                {effectSizes.slice(0, 20).map((e: any, i: number) => (
+                  <tr key={i} className="border-b border-gray-200">
+                    <td className="py-1.5 font-bold text-xs">{e.metric}</td>
+                    <td className="py-1.5 font-mono text-xs">{e.strategy_1} vs {e.strategy_2}</td>
+                    <td className="text-right py-1.5 font-mono">{e.cohens_d?.toFixed(2)}</td>
+                    <td className="text-right py-1.5">
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded border ${
+                        e.magnitude === "large" ? "bg-red-100 border-red-300 text-red-800" :
+                        e.magnitude === "medium" ? "bg-yellow-100 border-yellow-300 text-yellow-800" :
+                        e.magnitude === "small" ? "bg-blue-100 border-blue-300 text-blue-800" :
+                        "bg-gray-100 border-gray-300 text-gray-600"
+                      }`}>{e.magnitude}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       {/* Strategy Effectiveness */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -164,6 +317,7 @@ export default function ResearchInsightsPage() {
                 <th className="text-left py-2 font-black">Strategy</th>
                 <th className="text-right py-2 font-black">Debates</th>
                 <th className="text-right py-2 font-black">Accuracy</th>
+                <th className="text-right py-2 font-black">95% CI</th>
                 <th className="text-right py-2 font-black">Deadlock</th>
                 <th className="text-right py-2 font-black">Avg Confidence</th>
                 <th className="text-right py-2 font-black">Avg Aggression</th>
@@ -181,6 +335,9 @@ export default function ResearchInsightsPage() {
                   </td>
                   <td className="text-right py-2">{s.total_debates}</td>
                   <td className="text-right py-2 font-bold">{s.accuracy_pct}%</td>
+                  <td className="text-right py-2 text-xs font-mono text-gray-500">
+                    [{((s.accuracy_ci_lower || 0) * 100).toFixed(0)}-{((s.accuracy_ci_upper || 0) * 100).toFixed(0)}%]
+                  </td>
                   <td className="text-right py-2">{s.deadlock_pct}%</td>
                   <td className="text-right py-2">{(s.avg_confidence * 100).toFixed(0)}%</td>
                   <td className="text-right py-2">{(s.avg_aggressiveness * 100).toFixed(0)}%</td>

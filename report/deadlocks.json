@@ -1,0 +1,1 @@
+[{"strategy":"evidence_weighted","total_debates":8,"deadlocked":0,"deadlock_rate":0.0},{"strategy":"hierarchical","total_debates":8,"deadlocked":0,"deadlock_rate":0.0},{"strategy":"structured_debate","total_debates":8,"deadlocked":8,"deadlock_rate":1.0},{"strategy":"majority_voting","total_debates":8,"deadlocked":0,"deadlock_rate":0.0}]
