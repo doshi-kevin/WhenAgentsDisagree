@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/tmp/tectonic/tectonic.exe poster.tex)",
+      "Bash(python3 -c \"import subprocess; r=subprocess.run\\(['tectonic','poster.tex'],capture_output=True,text=True\\); print\\(r.stdout[-2000:]\\); print\\(r.stderr[-2000:]\\)\")",
+      "Bash(cmd //c \"where tectonic\")",
+      "Bash(cmd //c \"dir /s /b tectonic.exe\")",
+      "Bash(cmd //c \"dir /s /b C:\\\\Users\\\\conve tectonic*\")",
+      "Bash(cmd //c \"dir /s /b C:\\\\Users\\\\conve\\\\AppData tectonic*\")",
+      "Bash(cmd //c \"where pdflatex\")",
+      "Bash(curl --proto '=https' --tlsv1.2 -fsSL https://drop.cygwin.com/packages/x86_64/release/texlive/)",
+      "Read(//usr/share/**)",
+      "Bash(curl -fsSL https://github.com/tectonic-typesetting/tectonic/releases/latest/download/tectonic-x86_64-pc-windows-msvc.zip -o /tmp/tectonic.zip)",
+      "Bash(curl -s https://api.github.com/repos/tectonic-typesetting/tectonic/releases/latest)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\([a['name'] for a in d['assets'] if 'windows' in a['name'].lower\\(\\)]\\)\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); url=[a['browser_download_url'] for a in d['assets'] if 'windows-gnu' in a['name'].lower\\(\\)][0]; print\\(url\\)\")",
+      "Bash(curl -fsSL \"https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic%400.16.9/tectonic-0.16.9-x86_64-pc-windows-gnu.zip\" -o /tmp/tectonic.zip)",
+      "Read(//tmp/**)"
+    ]
+  }
+}
